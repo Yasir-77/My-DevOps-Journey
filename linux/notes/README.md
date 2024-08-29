@@ -247,6 +247,194 @@ $ rm -r project
 
 ```
 
+## VIM
+
+To start vim, type **`vim`** followed by a file name in the terminal: For example to start vim in example.txt type:
+```
+$ vim example.txt
+
+```
+If the file filename.txt does not exist, Vim will open a new empty file. If it exists, Vim will open it for editing.
+
+vim has multiple modes but the 3 most important ones are:
+
+- command mode: This mode is used for entering commands, such as saving a file or exiting Vim. You enter Command-Line Mode by pressing : in Normal Mode. This is also the default mode when you enter vim.
+  
+- insert mode: In this mode, Vim behaves like a standard text editor, allowing you to input and edit text. You can enter Insert Mode from Normal Mode by pressing i.
+
+- visual mode: This mode allows for text selection using the keyboard. You can enter Visual Mode by pressing v in Normal Mode.
+
+### Navigating in Vim 
+
+h: Move the cursor left
+
+j: Move the cursor down
+
+k: Move the cursor up
+
+l: Move the cursor right
+
+0: Move to the beginning of the line
+
+$: Move to the end of the line
+
+gg: Move to the beginning of the file
+
+G: Move to the end of the file
+
+w: Move forward to the next word
+
+b: Move backward to the previous word
+
+### Editing in vim
+
+i: Enter Insert Mode before the cursor
+
+a: Enter Insert Mode after the cursor
+
+o: Insert a new line below the current line and enter Insert Mode
+
+O: Insert a new line above the current line and enter Insert Mode
+
+x: Delete the character under the cursor
+
+dd: Delete the current line
+
+yy: Yank (copy) the current line
+
+p: Paste the yanked or deleted text after the cursor
+
+u: Undo the last change
+
+Ctrl + r: Redo the undone change
+
+### Saving and Exiting
+
+To save and exit the file, use the Command-Line Mode:
+
+:w: Save the current file
+
+:q: Quit Vim (only works if no changes have been made)
+
+:wq: Save and quit Vim
+
+:q!: Quit Vim without saving changes
+
+## Sudo command
+
+The sudo command stands for "superuser do." It allows a permitted user to execute a command as the superuser (root) or another user, as specified by the security policy. The sudo command is typically used to perform tasks that require administrative privileges.
+
+Examples of using sudo would be to run a command as a root. For example:
+```
+$ sudo apt-get update
+
+```
+This command runs apt-get update with root privileges, allowing you to update packages.
+
+To edit protected files youll also need to use a sudo command. For example /etc/host is a protected root user file. To edit the file type:
+```
+$ sudo vim /etc/hosts
+
+```
+
+This command opens the /etc/hosts file with the vim text editor using root privileges, allowing you to edit the file.
+
+When you need to switch to the root user to perform administritive taskts type the following:
+```
+$ sudo su
+
+```
+This is used when you are running multiple commands that require super user permissions.
+
+## rm -rf / **Very dangerous command**
+
+The **`rm -rf /`** command is a very dangerous command and shoulbe be avoided. 
+
+### What does the command do?
+
+Delete All Files and Directories: It will recursively delete every file and directory on the filesystem. This includes system files, user files, and everything else stored on the device
+
+No Confirmation: Because of the -f option, rm will not ask for any confirmation before deleting files, regardless of their permissions or whether they are protected or critical system files.
+
+### Potential Consequences
+
+System Crash: The command will start deleting essential system files and directories immediately, causing the system to become unstable and eventually crash.
+
+Data Loss: All data on the system will be deleted, including personal files, system files, configurations, and applications. This data loss is typically unrecoverable without backups.
+
+Unrecoverable State: After executing this command, the operating system will not function properly, if at all. The system would require a complete reinstall, and all data would be lost unless backed up elsewhere.
+
+## Users
+
+To create a new user type **`sudo useradd`** the the new username. For example to creat a user called newuser type:
+```
+$ sudo useradd
+
+```
+
+To set a password for the user type **`sudo passwd`** then the username. For example to add a password to the username newuser type:
+```
+$ sudo passwd newuser
+
+```
+
+You would then need to type in a password and confirm the password again
+
+To switch to the new user use the **`su`** command followed by - , followed by the user. For example to switch to the newuser created type:
+```
+$ su - newuser
+
+```
+
+
+You will then need to type the password you created.
+
+To give the newuser sudo privellages, first exit the newuser by typing exit then type the following:
+```
+sudo usermod -aG sudo newuser
+```
+
+
+To check if this is complete the newuser should be able to read the contents of the root directory by typing:
+```
+sudo ls /root
+```
+The directories should then be listed, if not permission will be denied.
+
+
+To remove sudo privellages, you would need to leave the new user by typing exit, this will take you to the ubunto user then type:
+```
+sudo deluser newuser sudo
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
