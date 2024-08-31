@@ -391,21 +391,81 @@ You will then need to type the password you created.
 
 To give the newuser sudo privellages, first exit the newuser by typing exit then type the following:
 ```
-sudo usermod -aG sudo newuser
+$sudo usermod -aG sudo newuser
 ```
 
 
 To check if this is complete the newuser should be able to read the contents of the root directory by typing:
 ```
-sudo ls /root
+$sudo ls /root
 ```
 The directories should then be listed, if not permission will be denied.
 
 
 To remove sudo privellages, you would need to leave the new user by typing exit, this will take you to the ubunto user then type:
 ```
-sudo deluser newuser sudo
+$sudo deluser newuser sudo
 ```
+
+## Groups:
+
+To create a new group run the command **`sudo groupadd`** followed by [group-name]. For example to create a new devops group type:
+```
+$sudo groupadd devops
+```
+To verify that thos has been created type the command:
+```
+$cat /etc/groups
+```
+To add users to the group that has been created the command **`sudo usermod`** is used followed by [-aG] followed by the [group-name] followed by the [user-name]. For exxample to add newuser to the devops group type:
+```
+$sudo usermod -aG devops newuser
+```
+To remove a user from the group use the comman **`sudo gpasswd`** followed by [-d] followed by the [user-name] followed by [group-name] for example to remove the newuser from the devops group type:
+```
+$sudo gpasswd -d newuser devops
+```
+To delete a group use the command **`sudo groupdel`** followed by the [group-name], for example to delete the devops group type:
+```
+$sudo groupdel devops
+```
+Users can be in multiple groups, to add users into multiple groups the command **`sudo usermod`** followed by [-aG] followed by [group-name1,group-name2] followed by the [user-name]
+Fore example to add a newuser into groups called group1 and group2 (these havent beeen created) type:
+```
+$sudo usermod -aG group1,group2 newuser
+```
+
+## File permissions
+File permissions are represented by a combination of three types of permissions for three categories of users:
+
+Types of Permissions:
+
+- Read (r): Allows viewing the contents of a file or directory listing.
+- Write (w): Allows modifying the contents of a file or creating/deleting files within a directory.
+- Execute (x): Allows running a file as a program/script or accessing a directory's contents.
+
+Categories of Users:
+
+- Owner (u): The user who owns the file.
+- Group (g): Users who are members of the file's group.
+- Others (o): All other users.
+
+A file's permissions can be viewed with the **`ls -l`** command, which shows them in the format:
+
+-rwxr-xr--
+
+Here, the first character represents the file type (e.g., - for a regular file, d for a directory). The next nine characters are grouped in sets of three, representing the permissions for the owner, group, and others respectively:
+
+rwx (owner): Read, write, and execute.
+r-x (group): Read and execute, no write.
+r-- (others): Read only, no write or execute.
+
+
+
+
+
+
+
 
 
 
