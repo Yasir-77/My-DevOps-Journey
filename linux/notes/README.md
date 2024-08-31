@@ -537,6 +537,27 @@ To Change Ownership of a Directory and Its Contents the command **`sudo chown`**
 $sudo chown -R newuser:group1 my_directory_copy  
 ```
 
+## Standard Streams (standard input, output and error streams)
+Redirection allows you to control where the output of a command goes or where the input comes from. Here's a quick guide:
+
+>: Redirect standard out to a file.
+Example: echo "text" > file.txt writes "text" to file.txt.
+
+<: Redirect a file to standard din.
+Example: sort < file.txt reads input from file.txt instead of the keyboard.
+
+>>: Append standard to a file.
+Example: echo "more text" >> file.txt appends "more text" to file.txt.
+
+2>: Redirect standard error to a file.
+Example: command 2> error.log redirects errors to error.log.
+
+2>&1: Redirect standard error to standard out.
+Example: command > output.log 2>&1 writes both standard output and standard error to output.log.
+
+&>: Redirect both standard error and standard out to a file (bash shorthand).
+Example: command &> combined.log writes both to combined.log.
+
 
 
 
