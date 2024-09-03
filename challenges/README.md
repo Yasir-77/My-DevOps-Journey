@@ -37,4 +37,69 @@ cat ./-
 
 The password is 263JGJPfgU6LtdEvgfWU1XP5yac29mFx
 
+## Level 2 to 3
+
+To complete the level type:
+```
+ls
+```
+Then 
+```
+cat "spaces in this filename"
+```
+
+The password is MNk8KNH3Usiio41PRUEoDFPqfxLPlSmx
+
+## Level 3 to 4
+
+To complete this level type:
+```
+ls -a
+```
+Then:
+```
+cd inhere
+```
+Then:
+```
+cat ...Hiding-From-You
+```
+
+Thes poassword is 2WmrDFRmJIq3IPxneAaMGhap0pFhF3NJ
+
+## Level 4 to 5
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
