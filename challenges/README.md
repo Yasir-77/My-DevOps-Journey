@@ -112,6 +112,24 @@ The password is HWasnPhtq9AVKe0dmk45nxy20cvUa6EG
 
 ## Level 6 to 7
 
+To find the paaword type:
+
+The following command will show all the files/directories that have bandit7 as a user, bandit6 as a group and a file size of 33 bytes.
+```
+find / -user bandit7 -group bandit6 -size 33c
+```
+
+Then a list of files will show, find the one that hasnt got permission denied written on it
+
+Then:
+```
+cat /var/lib/dpkg/info/bandit7.password
+```
+
+The password is morbNTDkSW6jIlUc0ymOdMaLnOlFVAaj
+
+## Level 7 to 8:
+
 
 
 
