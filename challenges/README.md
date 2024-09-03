@@ -130,8 +130,21 @@ The password is morbNTDkSW6jIlUc0ymOdMaLnOlFVAaj
 
 ## Level 7 to 8:
 
+To complete this level type:
+```
+ls
+```
+Then:
+```
+cat data.txt
+```
+The amount of data in the text is extemely long to find the password type:
+```
+grep "millionth" data.txt
+```
+The password is dfwvzFQi4mU0wfNbFOe9RoWskMLg7eEc
 
-
+## Level 8 to 9:
 
 
 
