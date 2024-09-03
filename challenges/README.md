@@ -69,8 +69,28 @@ Thes poassword is 2WmrDFRmJIq3IPxneAaMGhap0pFhF3NJ
 
 ## Level 4 to 5
 
+To complete this level type:
+```
+ls -a
+```
+Then:
+```
+cd inhere/
+```
+Then all the files listed will show up, to find the only human-readable file the **`file`** command is used. As we are searching for the type of file for all the files in the directory it is followed by **`./*`**. Type:
+```
+file ./*
+```
+Then:
+```
+cat ./-file09
+```
 
+The password is 4oQYVPkxZOOEOO5pTW81FB8j8lxXGUQw
 
+## Level 5 to 6
+
+To complete this level type:
 
 
 
