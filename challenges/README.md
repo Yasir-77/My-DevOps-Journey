@@ -91,6 +91,28 @@ The password is 4oQYVPkxZOOEOO5pTW81FB8j8lxXGUQw
 ## Level 5 to 6
 
 To complete this level type:
+```
+ls 
+```
+Then:
+```
+cd inhere
+```
+To find a file based on the specific size of the file use the command **`find [path] -size [size]`**
+
+Then:
+```
+find . -type f -size 1033c
+```
+Then:
+```
+cat ./maybehere07/.file2
+```
+The password is HWasnPhtq9AVKe0dmk45nxy20cvUa6EG
+
+## Level 6 to 7
+
+
 
 
 
