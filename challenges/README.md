@@ -177,6 +177,68 @@ The password is 4CKMh1JI91bUIZZPXDqGanal4xvAg0JM
 
 ## Level 9 to 10
 
+To find the password type:
+```
+ls
+```
+Then:
+```
+cat data.txt
+```
+Then:
+
+Use the **`string`** command followed by the **`grep`** command to narrow down the output to the lines that contain =.
+
+The strings command is used to extract all readable text
+```
+string data.txt | grep "="
+```
+The password is FGUW5ilLVJrxX9kMYMmlN4MgbpfMiqey
+
+## Level 10 to 11:
+
+To find the password type:
+```
+ls
+```
+Then:
+```
+cat data.txt
+```
+Then:
+
+Use the **`base64`** command followed by the **`-d`**. The base64 command is used to encode or decode data in Base64 format. The -d is used to decode the data.
+```
+base64 -d data.txt
+```
+
+The password is dtR173fZKb0RRsDFSGsg2RWnpNVj3qRr
+
+## Level 11 to 12:
+
+To find the password type:
+```
+ls
+```
+Then:
+```
+cat data.txt
+```
+Then:
+
+Use the **`base64`** command followed by the **`-d`**. The base64 command is used to encode or decode data in Base64 format. The -d is used to decode the data.
+```
+base64 -d data.txt
+```
+
+The password is dtR173fZKb0RRsDFSGsg2RWnpNVj3qRr
+
+
+
+
+
+
+
 
 
 
