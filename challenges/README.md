@@ -146,7 +146,36 @@ The password is dfwvzFQi4mU0wfNbFOe9RoWskMLg7eEc
 
 ## Level 8 to 9:
 
+To find the password type:
+```
+ls
+```
+Then:
+```
+cat data.txt
+```
+Then:
 
+Use the **`sort`** command combined with uniq -c to count the occurrences of each line in the file:
+
+sort filename.txt: Sorts the lines in the file, which is necessary because uniq -c only counts adjacent duplicate lines.
+
+uniq -c: Prefixes each line with the number of occurrences.
+```
+sort data.txt | uniq -c
+```
+
+or 
+
+```
+sort data.txt | uniq -u
+```
+
+uniq -u will only print the unique lines that havent been duplicated.
+
+The password is 4CKMh1JI91bUIZZPXDqGanal4xvAg0JM
+
+## Level 9 to 10
 
 
 
