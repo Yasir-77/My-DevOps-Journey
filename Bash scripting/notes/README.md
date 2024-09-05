@@ -11,4 +11,9 @@
 - Manage systems: Handle files, software installs, and system configurations.
 - Boost efficiency: Get more done with less typing.
 
-- 
+### How to write first simple script:
+
+First create a simpole script using the **`touch`** command For example:
+
+
+
