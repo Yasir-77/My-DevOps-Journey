@@ -334,11 +334,107 @@ fi
 
 The elif clause allows us to add another condition if nthe first condition is false. The else clause only executes when the condition for the if statements arent met
 
-With the score being 85 the script will print "Good!"
+With the score being 85 the script will print "Good!".
+
+### Nested if statements
 
 
+Nested if statements allow you to check multiple conditions in a more complex manner. When you nest if statements, an inner if block is executed only if the outer if condition is true. This is useful when decisions depend on more than one condition.
+
+For Example:
+```
+#!/bin/bash
+
+age=18
+grade=85
+
+if [ "$age" -gt 18 ]; then
+    echo "You are eligible based on age."
+  if [ "$grade -ge 80 ]; then
+    echo "You are eligible based on grade."
+    echo "Congrats! You are eligible for scholarship"
+  else
+    echo "sorry your grade is not high enough"
+  fi 
+else
+   echo "sorry, you are not eligible"
+  fi
+```
+
+In this case the response will say "sorry you are not eligible" this is due to the age, however if the age=19, the script will read "You are eligible based on age. You are eligible based on grade. Congrats! you are eligible for scholarship".
+
+### While loops
+
+While loops allow you to repeatedly execute a block of code as long as a specified condition is true. These loops are useful when you don't know in advance how many iterations you'll need, and the loop continues until a condition is no longer met.
+
+The general structure of a while loop is:
+```
+#!/bin/bash
+
+while condition
+do
+	# code to be executed
+done
+```
+
+Some examples:
+
+e.g.1
+```
+#!/bin/bash
+
+count=1
+
+while [ $count -le 5 ]
+do
+	echo "count: $count"
+        ((count++))  
+done
+```
+When this is run the count will continue until it reaches 5, once it does the loop ends. ((count++)) adds 1 for each iteration of this while loop.  The script will show:
+```
+count: 1
+count: 2
+count: 3
+count: 4
+count: 5 
+```
+
+e.g.2 
+```
+#!/bin/bash
+
+fruits=("apple" "banana" "orange") 
+index=0 
+
+while [ $index -lt ${#fruits[@]} ]
+do
+	echo "Fruit: ${fruits[$index]}" 
+        ((index++))  
+done
+```
+
+When running the script the output would be:
+```
+Fruit: apple
+Fruit: banana
+Fruit: orange
+```
+
+Explaining the code:
 
 
+fruits=("apple" "banana" "orange") - This line declares an array called fruits with three elements: "apple", "banana", and "orange".
+
+index=0  - A variable called index is initialized with a value of 0. This will be used to keep track of the current position (or index) as we loop through the array.
+
+while [ $ index -lt ${#fruits[@]} ] - This is a while loop that continues as long as the condition is true.
+Condition: [ $ index -lt ${#fruits[@]} ] checks if the value of index is less than the number of elements in the array
+
+echo "Fruit: ${fruits[$index]}" -  #This line prints the current fruit in the array.
+${fruits[$index]} accesses the element in the array at the position specified by index. For example, if index is 0, it accesses fruits[0], which is "apple".
+        
+((index++))  #This is a shorthand for incrementing the value of index by 1.
 
 
   
