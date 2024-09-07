@@ -196,6 +196,157 @@ Rectangle area: 20
 Rectangle perimeter: 18
 ```
 
+#!/bin/bash
+
+age=25
+
+if [ $age -gt 18 ]
+then
+	echo "You are an adult!"
+fi
+
+### if statements
+
+In Bash scripting, if statements are used to execute a block of code based on a condition. The basic structure of an if statement can be extended to handle multiple conditions and complex logic.
+
+The general stucture is:
+```
+#!/bin/bash
+
+if condition
+then
+	# code block to be executed
+fi
+```
+conditions in if statements are formed using comparison operators for example:
+- eq = equals
+- ne = npot equals to
+- lt = less than or equal to
+- ge = greater than or equal to
+
+If statments become more powerful when combined with logical operators for example:
+- && = AND
+- || = OR
+
+These can be used to create more complex conditions.
+
+Some examples:
+
+e.g.1
+
+```
+#!/bin/bash
+
+age=25
+
+if [ $age -gt 18 ]
+then
+	echo "You are an adult!"
+fi
+
+```
+This script should printt "You are an adult".
+
+e.g.2
+
+```
+#!/bin/bash
+
+grade=85
+
+if [ $grade -ge 90 ] && [ $grade -le 100] 
+then
+	echo "Excellent"
+fi
+
+```
+The script will print nothing as 85 doesnt fall in this range, however if **`grade=95`** then the script would print "Excellent".
+
+e.g.3 
+
+To compare strings operators that are used are:
+
+- == which is equals to
+- != which is not equals to
+
+```
+#!/bin/bash
+
+name="Alice"
+
+if [ $name == "Alice"] 
+then
+	echo "Hello, Alice"
+fi
+
+```
+The script in this case will print "Hello, Alice". If any other name is the variable nothing will appear.
+
+### else and elif
+
+The else clause provides an alternative code block to be executed when the if condition evaluates to false. It provides an alternative path in your scripts flow offering flexibility and versatility.
+
+The structure of an else clasue:
+```
+#!/bin/bash
+
+if condition
+then
+	# code block if condition is true
+else
+  # code block if condition is false
+fi
+```
+
+Some examples:
+
+e.g.1
+```
+#!/bin/bash
+
+age=15
+
+if [ $age -gt 18 ]
+then
+	echo "You are an adult!"
+else
+  echo "You are not an adult!"
+fi
+```
+The script will print "You are not an adult!"
+
+e.g.2
+```
+#!/bin/bash
+
+score=85
+
+if [ $score -ge 90 ]
+then
+	echo "Excellent!"
+elif [ $score -ge 80 ]
+then
+  echo "Good!"
+else
+  echo "Better luck nect time"
+fi
+```
+
+The elif clause allows us to add another condition if nthe first condition is false. The else clause only executes when the condition for the if statements arent met
+
+With the score being 85 the script will print "Good!"
+
+
+
+
+
+
+  
+
+
+
+
+
 
 
 
