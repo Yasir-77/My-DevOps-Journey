@@ -531,6 +531,154 @@ do: Marks the beginning of the loop body.
 
 echo "Number: $number": This command prints the current value of the number variable, prefixed by "Number: ".  
 
+### Break and Continue
+
+In Bash scripting, break and continue are control flow statements used to alter the flow of execution within loops. The break statement is used to exit from a loop prematurely. It terminates the loop and transfers control to the statement immediately following the loop. The continue statement skips the remaining code in the current iteration of the loop and proceeds to the next iteration. It does not exit the loop but rather jumps to the next iteration.
+
+For example 
+
+e.g. 1a
+```
+#!/bin/bash
+
+for (( i=1; i<=5; i++))
+do
+
+    if [ $i -eq 3 ]
+    then
+        break 
+    fi
+    echo "Number: $i"
+
+done
+```
+The output will show:
+```
+Number: 1
+Number: 2
+```
+The loop will execute and print values of i from 1 to 2. When i reaches 3, the break statement will be triggered, and the loop will terminate before printing 3 or any subsequent numbers.
+
+e.g. 1b
+```
+#!/bin/bash
+
+for (( i=1; i<=5; i++))
+do
+
+    if [ $i -eq 3 ]
+    then
+        continue 
+    fi
+    echo "Number: $i"
+
+done
+```
+The output will show:
+```
+Number: 1
+Number: 2
+Number: 4
+Number: 5
+```
+The script iterates from 1 to 5. When i is 3, the continue statement causes the loop to skip the echo command for that iteration. The result is that "Number: 3" is not printed, but all other numbers in the range are printed.
+
+The break and continue statements also work for while loops, the behaviour is the same:
+
+e.g.2
+
+```
+#!/bin/bash
+
+while true
+do
+
+    echo "count: $count"
+    ((count++))
+    if [ $count -eq 4 ]
+    then
+        break
+    fi
+
+done
+```
+The output will show:
+```
+count: 1
+count: 2
+count: 3
+```
+The while true loop runs infinitely until the break condition is triggered. The count variable is incremented on each iteration and is printed, the loop stops when count equals 4 due to the break statement.
+
+### Basics of functions
+
+A function in Bash is a block of reusable code that can be defined once and called multiple times in a script. Functions make scripts easier to manage and reduce code duplication.
+
+The structure of a function in bash:
+The structure for a for loop is:
+```
+#!/bin/bash
+
+function_name() {
+
+    #code block to be executed
+}
+```
+Some examples:
+
+e.g.1
+```
+#!/bin/bash
+
+hello_world() {
+      echo "Hello world!"
+}
+
+hello_world
+```
+The function hello_world is defined and called to display "Hello world!".
+
+e.g.2
+```
+#!/bin/bash
+
+hello_world() {
+      echo "Hello world!"
+}
+
+greet_person() {
+      local name="$1"
+      echo "Hello, $name!"
+}
+
+greet_person "Ahmed"
+greet_person "Sam"
+```
+The output of the script:
+```
+Hello, Ahmed!
+Hello, Sam!
+
+```
+Breakdown of the script:
+
+hello_world(): This function is defined to print "Hello world!", although it’s not called in this version of the script.
+
+greet_person(): This function takes one argument, which is the name of a person, and assigns it to the local variable name using the $1 positional parameter.
+
+local name="$1": Declares name as a local variable, scoped only to this function, and assigns it the value of the first argument passed to the function.
+
+echo "Hello, $name!": Prints a greeting message, replacing $name with the actual value passed.
+
+Function Calls:
+
+greet_person "Ahmed": Calls the greet_person function with "Ahmed" as the argument. The function prints "Hello, Ahmed!".
+
+greet_person "Sam": Calls the greet_person function with "Sam" as the argument. The function prints "Hello, Sam!".
+
+
+
+
 
 
 
