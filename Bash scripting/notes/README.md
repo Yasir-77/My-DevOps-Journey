@@ -939,9 +939,61 @@ nonexistentcommand: This is not a valid command, so it will fail, returning a no
 
 echo "After the script": This line will not be executed because the script exits after nonexistentcommand fails
 
+## set -u:
 
+set -u causes the script to exit with an error if you try to use a variable that has not been initialized.
+For example:
+```
+#!/bin/bash
 
+set -u
 
+x=10
+y=20
+z=$((x + y + w))
+echo "z equals: $z"
+```
+Output:
+```
+./u_.sh: line 6: w: unbound variable
+```
+Breakdown:
+
+Error Handling:
+
+Because w is unset and set -u is active, the script will fail with an error when it tries to use w.
+
+The script prints an error message indicating that w is an unbound variable.
+
+The echo "z equals: $z" line will not be executed because the script exits before reaching it.
+
+## set -x:
+
+The set -x option prints each command that will be executed to the terminal before it is actually executed
+
+#!/bin/bash
+```
+set -x
+
+echo "Starting the script"
+X=10
+Y=20
+Z=$((X+ Y))
+echo "The value of Z is: $Z"
+```
+Output:
+```
++ echo 'Starting the script'
+Starting the script
++ X=10
++ Y=20
++ Z=$((X + Y))
++ echo 'The value of Z is: 30'
+The value of Z is: 30
+```
+Each line will be printed to the terminal with a + prefix, showing the command being executed and the evaluated result of any expressions.
+
+To disable debugging, use set +x after the section you want to debug.
 
 
 
