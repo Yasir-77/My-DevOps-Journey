@@ -862,10 +862,82 @@ file_count=$ (ls "$directory" | wc -l): Uses ls to list the files in the directo
 
 get_file_count "./" calls the function with the current directory (./), which is the directory where the script is executed.
 
+### Exit codes
 
+Exit codes are numeric values returned by a script or command after it finishes executing. These codes are used to indicate the success or failure of the command or script.
 
+- 0: Indicates success.
+  
+- Non-zero (1–255): Indicates failure. Each non-zero value can indicate a different type of error.
 
+For example:
 
+```
+#!/bin/bash
+
+command -v git 2>/dev/null
+
+if [[ $? -ne 0 ]]; then
+	echo "git is not installed. please install git."
+	exit 1
+else
+	echo "git is installed"
+fi
+
+```
+Output:
+
+If git is installed:
+```
+git is installed
+```
+If git is not installed:
+```
+git is not installed. Please install git. 
+```
+Breakdown:
+
+command -v git: This command checks if git is available in the system's PATH. If git is found, it prints its path and returns exit code 0. If not, it returns a non-zero exit code.
+The 2>/dev/null redirects any error messages to /dev/null, effectively silencing them.
+
+$?:  holds the exit code of the last command (command -v git in this case). 0 indicates success (git is installed), and non-zero indicates failure (git is not installed).
+
+if [[ $? -ne 0 ]]; then: This checks if the exit code is not equal to 0, which means git is not installed.
+
+exit 1: This exits the script with an exit code of 1, indicating failure.
+
+Else Block: If git is found, the script prints that git is installed and continues.
+
+## set -e:
+
+The set -e command in Bash is used to instruct the shell to exit immediately if any command in the script (except certain commands, like those inside if statements or conditions) returns a non-zero exit code. This helps to catch and handle errors early, ensuring that the script doesn't continue running after a failure, which could lead to unintended behavior. 
+
+For example:
+```
+#!/bin/bash
+
+set -e
+
+echo "Before the script"
+
+nonexistentcommand
+
+echo "After the script"
+```
+Output:
+```
+Before the script
+./e_.sh: line 7: nonexistentcommand: command not found
+```
+Breakdown:
+
+set -e: With set -e, the script will exit immediately if any command returns a non-zero exit status (indicating an error).
+
+echo "Before the script": This command prints "Before the script" to the console. It will execute successfully.
+
+nonexistentcommand: This is not a valid command, so it will fail, returning a non-zero exit code. Due to set -e, the script will stop executing at this point, and the next line will not be reached.
+
+echo "After the script": This line will not be executed because the script exits after nonexistentcommand fails
 
 
 
