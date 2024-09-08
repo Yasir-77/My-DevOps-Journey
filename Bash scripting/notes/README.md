@@ -908,7 +908,7 @@ exit 1: This exits the script with an exit code of 1, indicating failure.
 
 Else Block: If git is found, the script prints that git is installed and continues.
 
-## set -e:
+### set -e:
 
 The set -e command in Bash is used to instruct the shell to exit immediately if any command in the script (except certain commands, like those inside if statements or conditions) returns a non-zero exit code. This helps to catch and handle errors early, ensuring that the script doesn't continue running after a failure, which could lead to unintended behavior. 
 
@@ -939,7 +939,7 @@ nonexistentcommand: This is not a valid command, so it will fail, returning a no
 
 echo "After the script": This line will not be executed because the script exits after nonexistentcommand fails
 
-## set -u:
+### set -u:
 
 set -u causes the script to exit with an error if you try to use a variable that has not been initialized.
 For example:
@@ -967,12 +967,12 @@ The script prints an error message indicating that w is an unbound variable.
 
 The echo "z equals: $z" line will not be executed because the script exits before reaching it.
 
-## set -x:
+### set -x:
 
 The set -x option prints each command that will be executed to the terminal before it is actually executed
-
-#!/bin/bash
 ```
+#!/bin/bash
+
 set -x
 
 echo "Starting the script"
@@ -994,6 +994,81 @@ The value of Z is: 30
 Each line will be printed to the terminal with a + prefix, showing the command being executed and the evaluated result of any expressions.
 
 To disable debugging, use set +x after the section you want to debug.
+
+### set -eux
+
+The set -eux command in Bash combines three useful options to enhance script debugging:
+
+Combined Effect of set -eux 
+
+Exit on Errors (-e): If any command fails (returns a non-zero exit code), the script will exit immediately.
+
+Exit on Unset Variables (-u): The script will exit if you use an unset variable.
+
+Debugging (-x):Each command and its expanded arguments will be printed to the terminal before execution, which helps with debugging.
+
+```
+#!/bin/bash
+
+set -eux
+
+echo "This is a test."
+X=10
+echo "The value of X is: $X"
+
+nonexistentcommand
+```
+Output:
+```
++ echo 'This is a test.'
+This is a test.
++ X=10
++ echo 'The value of X is: 10'
+The value of X is: 10
++ nonexistentcommand
+./eux.sh: line 8: nonexistentcommand: command not found
+
+```
+Breakdown:
+
+./eux.sh: line 8: nonexistentcommand: command not found: The error message indicates the failure and the line where it occurred.
+
+set -e ensures the script exits as soon as a command fails.
+
+set -u ensures the script exits if you try to use an unset variable didnt happen in this script.
+
+set -x gives detailed debugging output by showing each command as it runs.
+
+### Change PATH permanently:
+
+First create a new directory in the home directory where the custom script is going to be placed:
+```
+mkdir my_scripts
+```
+Then create a simple script you want to run from anywhere:
+```
+vi my_scripts/hello_world.sh
+```
+Type in the script:
+```
+#!/bin/bash
+
+echo "Hello World"
+```
+Then give it the executable permission by:
+```
+chmod +x my_scripts/hello_world.sh
+```
+The next step is to add this directory to the PATH: (Changes to path made in the terminal are temporary and lost when the shell session ends) to make them permantent add to zshrc file
+Do the following: 
+```
+echo "export PATH=$PATH:~/my_scripts >> ~/.zshrc
+```
+Then use the source command to update all the changes:
+```
+source ~/.zshrc
+```
+Then you can type hello_world.sh form anywhere and the script "Hello World" will show up.
 
 
 
