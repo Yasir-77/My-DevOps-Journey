@@ -1070,8 +1070,31 @@ source ~/.zshrc
 ```
 Then you can type hello_world.sh form anywhere and the script "Hello World" will show up.
 
+### Environment variables
 
+Environment variables are system-wide variables available to all processes, including shell scripts. You can access and read these environment variables directly in your script by using the $ symbol followed by the variable name.
 
+e.g.
+```
+#!/bin/bash
+
+my_home="$HOME"
+my_user="$USER"
+my_os="$OSTYPE"
+
+echo "Home Directory: $my_home"
+echo "Current user: $my_user"
+echo "OS Type: $my_os"
+```
+
+Output:
+Would show the users home directory, current user amd the OS Typer.
+
+my_home="$HOME": Stores the user's home directory in the variable my_home.
+
+my_user="$USER": Stores the current user's name in my_user.
+
+my_os="$OSTYPE": Stores the operating system type in my_os. $OSTYPE is a built-in Bash variable that gives information about the OS (e.g., linux-gnu for Linux, darwin for macOS).
 
 
 
