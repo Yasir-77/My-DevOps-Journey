@@ -12,6 +12,19 @@ To complete this level:
 
 Type:
 ```
-
+mkdir Arena
 ```
-
+Then:
+```
+Touch warrior.txt
+```
+```
+Touch mage.txt
+```
+```
+Touch archer.txt
+```
+Then:
+```
+ls Arena
+```
