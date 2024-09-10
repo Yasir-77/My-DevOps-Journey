@@ -10,6 +10,8 @@ Mission: Create a directory named Arena and then inside it, create three files: 
 
 To complete this level:
 
-First:
+Type:
+```
 
+```
 
