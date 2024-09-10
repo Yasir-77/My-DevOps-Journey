@@ -16,15 +16,81 @@ mkdir Arena
 ```
 Then:
 ```
-Touch warrior.txt
-```
-```
-Touch mage.txt
-```
-```
-Touch archer.txt
+cd Arena
 ```
 Then:
 ```
-ls Arena
+Touch warrior.txt mage.txt archer.txt
 ```
+Then:
+```
+ls arena
+```
+
+## Level 2: Variables and Loops
+
+Mission: Create a script that outputs the numbers 1 to 10, one number per line.
+
+Create a new file called number.sh:
+```
+vim numbers.sh
+```
+Then type in the text editor:
+```
+#!/bin/bash
+
+number=1
+
+while [ $number -le 10 ]
+do
+        echo "number $number"
+        ((number++))
+done
+```
+Once completed make the script executable:
+```
+chmod +x numbers.sh
+```
+Then: run the script:
+```
+./numbers.sh
+```
+
+## Level 3: Conditional Statements
+
+Mission: Write a script that checks if a file named hero.txt exists in the Arena directory. If it does, print Hero found!; otherwise, print Hero missing!.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
