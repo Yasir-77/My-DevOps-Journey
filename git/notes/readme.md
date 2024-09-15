@@ -25,3 +25,25 @@ Git is a distributed version control system that enables users to collaborate on
 - Backup and restore - Git naturally serves as a backup mechanism since every clone of a repository contains the entire project history. If a server crashes, the project can be fully recovered from any developer’s local copy. This prevents accidental data loss and prevents any unintended changes. Allowing the code to revert back to stable state.
 
 - Branching and merging -  Git’s branching model lets developers create isolated branches for new features, bug fixes, or experiments. This isolates the work, reducing the risk of bugs or instability in the main codebase. Once the changes are ready, they can be merged into the main project. Allows developers to work on multiple aspects of the same project.
+
+- How to Create a Git Repository & link it locally.
+
+To congirgure Git and link it to any terminal type:
+
+git config --global user.name "(username)"
+
+git config --global user.email "(email address)"
+
+Then clone the repository by pressing the code button and copying the html.
+
+In this example the username used is yasir-77, email is yasirahmed2000@outlook.com and the url is copie.
+
+```
+git config --global user.name "yasir-77"
+```
+```
+git config --global user.name "yasirahmed2000@outlook.com"
+```
+
+
+
