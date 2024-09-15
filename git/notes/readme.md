@@ -1,6 +1,6 @@
-## Introduction to Git
+# Introduction to Git
 
-### Git content to study:
+## Git content to study:
 
 - Why is Git important
 - Getting started on Git
@@ -54,6 +54,97 @@ git clone url
 - Installation instructions - The README.md typically lists any dependencies or prerequisites required to run the project, such as libraries or tools, and provides step-by-step installation instructions. This ensures users can set up the project environment correctly.
 
 - Contribution Workflow - It may describe the directory structure of the repository and provide instructions on how to set up a development environment or contribute via pull requests. This simplifies the onboarding process for new developers.
+
+## Understanding commits
+
+### What is the purpose of commits:
+
+Git allows you to create a snapshots of your project at specific points and time this helps isolate and document changes or additions making project management easier.
+
+Every committing git records what changes were made when and by who this detailed tracking is essential for maintaining a clear project history
+
+Using commit messages you can describe the changes made and the reasons behind them this practice helps everyone understand the context and purpose of each change.
+
+Git also supports team collaboration by providing a comprehensive history of all changes, the Audit trail it creates is invaluable for understanding the evolution of the project and reviewing decisions
+
+Git enables efficient version control by tracking every change to the code base, you can manage different versions to your project and revert previous versions if needed. 
+
+The detailed audit trail and git allows you to review the history of changes and understand why they were made this transparency is crucial for team collaboration and project management.
+
+Committing git record changes in detail ensuring that every modification is tracked and documented this detailed record helps in maintaining a robust project history.
+
+Git also allows you to trouble shoot easier by allowing you to revert to a previous state and isolate problematic changes if anything goes wrong you can quickly identify and fix issues by reviewing the commit history.
+
+### Good commit practises:
+
+- Commit often
+- Write clear commit messages
+- Use command style in messages
+- Comit related changes together
+- Test before committing
+- Avoid committing generated files
+- Break down large changes
+- Use consistent message stle
+- Include references
+
+## Branching 
+
+### Why is Branching a good thing?
+
+Branching allows developers to work on different features, fixes, or experiments without affecting the main codebase.
+
+Branching allows multiple developers to work on the same project simultaneously. Each team member can create their own branch for the feature or bug they are working on.
+
+By keeping new work in branches, teams can review code before merging it into the main branch.
+
+Branches can be used for different versions of software. For example, you might have a stable branch for production, a development branch for upcoming feature
+
+When an urgent bug fix is needed, developers can create a fix branch, make the necessary changes, and merge it into the main branch without interfering with ongoing feature development.
+
+### Git flow workflow
+
+#### Key Branches:
+
+Main (or master): Represents the production-ready code.
+
+Develop: Reflects the latest development state and is where features are merged once completed and tested.
+
+Feature branches: For working on new features or tasks.
+
+Release branches: Created when preparing a new release to make final changes and test it before merging into the main branch.
+
+Hotfix branches: For urgent bug fixes in production.
+
+#### Workflow:
+
+Developers create feature branches from develop, complete the feature, and merge them back into develop.
+
+A release branch is created when a set of features is ready for production. After testing and polishing, it gets merged into both main and develop.
+
+For urgent fixes, a hotfix branch is created from main and merged back into both main and develop.
+
+![image](https://github.com/user-attachments/assets/e66f4c0e-b6df-4e90-a0d1-f95c5e413ae2)
+
+## Pull requests
+
+### Purpose of Pull requests
+
+- Review code before integrating
+- Keeps a record
+- Maintain a high quality of code
+- Assign Team members to review pull requests
+
+
+
+
+
+
+
+
+
+
+
+
 
   
 
