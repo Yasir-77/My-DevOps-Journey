@@ -134,6 +134,27 @@ For urgent fixes, a hotfix branch is created from main and merged back into both
 - Maintain a high quality of code
 - Assign Team members to review pull requests
 
+To create a branch use the command **`git branch`** followed by what you label it as For example to create branch update/README type:
+```
+git branch Update/README
+```
+The command **`git status`** Tells you which branch youre currently in.
+
+To actually move to the update/README branch type use the command **`git checkout`** For example:
+```
+git checkout update/README
+```
+Once changes are made **`git add`** the changes to the staging environment:
+```
+git add README.md
+```
+Then use the command **`git commit -m "New feature added"`** this is to show why bthe change was made.
+
+To push into local repository use **`git push`**.
+
+
+
+
 
 
 
