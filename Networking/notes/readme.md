@@ -99,6 +99,12 @@ TCP VS UDP
 | Speed | Faster, no connection or handshake setup needed   | Slower due to overheaad of connection |
 | Error Checking | No error checking or flow control   | Error checking and flow control |
 
+## Chapter 2: OSI Model (open system interconnection model)
+
+### Overview of OSI Model
+
+Why do we need a communication model?
+
 
 
 
