@@ -6,23 +6,17 @@ A computer network is a group of devices connected to each other allowing them t
 
 Importance in modern infrastructure:
 
-Foundation - Enables communication between devices
-
-Resource sharing - Facilitates sharing of files, printers and more
-
-Internet functionality - Critical for browsing, streaming and communication 
-
-Application support - Backbone for app connectivity and data transfer
+- Foundation - Enables communication between devices
+- Resource sharing - Facilitates sharing of files, printers and more
+- Internet functionality - Critical for browsing, streaming and communication 
+- Application support - Backbone for app connectivity and data transfer
 
 Netowking in Devops
 
-Server Interactions - Enables communication between servers and applications.
-
-Deployment - Critical for mlaunching and updating applications 
-
-Management - Crucial in monitoring and managing infrastructure
-
-Optimisation - Enhances troubleshooting, performance and scalability
+- Server Interactions - Enables communication between servers and applications.
+- Deployment - Critical for mlaunching and updating applications 
+- Management - Crucial in monitoring and managing infrastructure
+- Optimisation - Enhances troubleshooting, performance and scalability
 
 ### Network basics/Types of Networks
 
@@ -65,8 +59,47 @@ What are protocols? A protocol is a set of rules or standards that determine how
 
 Importance of ports and protocols - Ports ensure data gets to the right application on your device while protocols ensure that the data is undertandable and properly formatted.
 
-Two main types of Protocols:
-- TCP (Transmission control protocol)
+#### Two main types of Protocols:
+
+1. TCP (Transmission control protocol) - TCP ensures that data sent from one device reaches another device accurately and in the correct order
+
+Characterisitcs of TCP:
+
+- It is connection oriented
+- It requires a "handshake" where two devices agree to communicate, in networking this is a 3 step process.
+- Reliable data transfer, TCP ensures that all data sent is recieved correctly on the other end, any data corruipted or incorrect TCP  will resend it.
+
+Use cases of TCP:
+
+- Ensures data is delivered in order
+- Error checking and flow control
+- Any bidirectional communication
+
+2. UDP (User Datagram Protocol) - UDP is a simple protocol used to send and recieve data often reffered to as connectionless.
+
+Characteristics of UDP:
+
+- Simple protocol to send and recieve data
+- Prior communication not required (Can be good and bad)
+- connectionless - no form of connection established betwween sender and reciever.
+- Fast but less reliable
+
+Use cases of UDP:
+
+- Suitable for real time applications e.g video streaming
+- DNS
+- VPN protocols
+
+TCP VS UDP 
+
+| FEATURE  | UDP  | TCP     |
+|-------|------|----------|
+| Connection  | Connectionless |Connection-oriented (uses a handshake)  |
+| Reliability | Unreliable (no guarantees of delivery) | Reliable (ensures delivery and order) |
+| Speed | Faster, no connection or handshake setup needed   | Slower due to overheaad of connection |
+| Error Checking | No error checking or flow control   | Error checking and flow control |
+
+
 
 
 
