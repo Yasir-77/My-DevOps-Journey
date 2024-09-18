@@ -105,6 +105,21 @@ TCP VS UDP
 
 Why do we need a communication model?
 
+Application independence
+- Without a standard model, applications must understand the underlying network.
+- Imagine having different versions of your application/software for Wi-Fi, Ethernet, Fibre etc
+- With a communicstion model applications can work independently of the network making development and coding much simpler and more efficient.
+
+Simplified Network Equipment Managment
+- Upgrading network mequipment is difficult without a standard model.
+- Easier to upgrade and manage network gear because everything speaks the same language with the communication model
+- Standardization makes maintenence and upgrading smoother and less prone to issues.
+
+Decoupled innovation
+-Innovations can happen in each layer independently, without affecting the entire system.
+
+### 7 Layers of the OSI Model
+
 
 
 
