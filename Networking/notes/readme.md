@@ -120,7 +120,73 @@ Decoupled innovation
 
 ### 7 Layers of the OSI Model
 
+1- Physical layer 
+- Function: Transmits raw bit streams over a physical medium
+- Components: Cables, switches and network interface cards
 
+2- Data link
+- Function: This layer provides node to node data transfer and detects, possibly corrects, errors that may occur in the physical layer. It ensures that data is transferred correctly between adjacent network nodes.
+- Layer 2 introduces the concept of frames, which is a format for sending information over a layer 2 network.
+- components: Mac addresses, switched and Bridges.
+  
+3- Network
+- Determines how data is sent to the recipient, manages packet forwarding including routing through intermediate routers.
+- IP packets are moved step by step forms source to destination via intermediate networks. Encapsulated in different frames along the way.
+- Components: IP addresses, routers
+  
+4- Transport 
+- Provides reliable data transfer services to the upper layers, segments and reassembles data.
+- components: TCP and UDP
+
+5- Session
+- Function: Manages sessions between applications, Establishes, maintains and terminates connections
+- components: session management protocols
+
+6- Presentation Layer
+- Function: Translates data between the application layer and the network, ensures that data is in a usable format
+- component: Encryption, data formatting
+  
+7- Application:
+- Function: Frovides network services directly to applications, End-user Layer
+- components: HTTP,FTP,SMTP
+
+### Overview of the TCP/IP Model (Layers)
+![image](https://github.com/user-attachments/assets/65f1508a-3be5-4943-b85e-25772b277231)
+
+### OSI Layers; POV of sender & reciever
+
+Example 1: POV of sender - User sends a POST request to an HTTP web page
+
+Application Layer: The user sends a POST reques with JSON data  via their browser using HTTP.
+
+Presentation Layer: Data is encrypted (if using HTTPS) to ensure secure transmission. serialise JSON to flat byte data strings.
+
+Session Layer: A session is created between the client and server. Request to establish TCP connection
+
+Transport Layer: The POST request is split into segments using TCP for reliable transmission. Sends SYN request to target port 443 which is HTTPS
+
+Network Layer: Each segment is encapsulated into IP packets and routed to the server.
+
+Data Link Layer: The IP packets are converted into frames for transmission over the local network.
+
+Physical Layer: The frames are transmitted as raw bits via electrical signals, radio waves, or optical signals.
+
+
+Example 2: POV of reciever
+
+Physical Layer: The server receives the electrical/optical signals and converts them into bits.
+
+Data Link Layer: The bits are organized into frames, error-checked, and validated using MAC addresses.
+
+Network Layer: The packets are checked for correct IP addresses and, if necessary, reassembled.
+
+Transport Layer: TCP ensures the packets are delivered reliably and reassembled correctly using the port number (e.g., 80 or 443).
+
+Session Layer: The session is managed to keep track of the HTTP request and ongoing communication. Connection session is established.
+
+Presentation Layer: If encrypted, the POST data is decrypted and translated to the correct format. Data decompresses
+
+Application Layer: The server processes the POST request and formulates an appropriate response (e.g., sending back a web page).
 
 
 
