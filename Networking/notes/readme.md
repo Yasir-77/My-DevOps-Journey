@@ -32,7 +32,7 @@ Switches - Connect devices within the same network, manage data flow within a LA
 
 Routers - Direct traffic between networks, connect different networks
 
-Firewalls - Protect networls from unauthorised access, monitor and control incoming and outgoing network traffic
+Firewalls - Protect networks from unauthorised access, monitor and control incoming and outgoing network traffic
 
 ### IP address & MAC address
 
@@ -155,7 +155,7 @@ Decoupled innovation
 
 ### OSI Layers; POV of sender & reciever
 
-Example 1: POV of sender - User sends a POST request to an HTTP web page
+#### Example 1: POV of sender - User sends a POST request to an HTTP web page
 
 Application Layer: The user sends a POST reques with JSON data  via their browser using HTTP.
 
@@ -172,7 +172,7 @@ Data Link Layer: The IP packets are converted into frames for transmission over 
 Physical Layer: The frames are transmitted as raw bits via electrical signals, radio waves, or optical signals.
 
 
-Example 2: POV of reciever
+#### Example 2: POV of reciever
 
 Physical Layer: The server receives the electrical/optical signals and converts them into bits.
 
@@ -187,6 +187,125 @@ Session Layer: The session is managed to keep track of the HTTP request and ongo
 Presentation Layer: If encrypted, the POST data is decrypted and translated to the correct format. Data decompresses
 
 Application Layer: The server processes the POST request and formulates an appropriate response (e.g., sending back a web page).
+
+## Introduction to DNS (Domain Name System)
+
+This section will go through:
+
+- What is DNS and its role in networking
+- DNS components
+- DNS records
+- How DNS works: DNS Process
+- DNS tools
+- using /etc/hosts on our local machine
+
+### What is DNS and its role in networking
+
+Definition: Translate domain names to IP addresses
+
+Role in Networking: Simplifies navigation on the internet Essential for accessing websites and services.
+
+### DNS components: Nameservers & Zone Files
+
+DNS components: Name servers
+- Load DNS settings and configurations
+- Can be authoritative or recursive
+- A recursive DNS server is responsible for querying other DNS servers to find the answer to a query.
+- An authoritative DNS server is the final source of truth for a particular domain's DNS records. These servers store DNS records for specific domains
+
+DNS components: Zone files
+- Zone files are stored inside Name servers ans store information about the domain. They help name servers answer queries about how to get to the domain if the name server doesnt know the answer directly.
+- Organized and readable format.
+
+### DNS components: Records
+- A zone file is compromised of multiple resource records. Each record contains specific information about hosts, name sewrvers and various nother resources.
+- Components: record name, TTL, Class, Type, Data
+
+| Resource records  | Description  
+|-------|------
+| Record name  | The domain name being queried |
+| Time to live | Indicates how long the record is valid (before refresh required) |
+| Class | Namespace of the record information |
+| Type | Type of record (A or MX or AAAA etc) | 
+| NS | Name of server record | 
+| Data | The actual information corresponding to the record type. Like IP address for an A record |
+
+#### DNS records
+
+| Record  | Description  
+|-------|------
+| A  | Maps a domain name to an IPv4 address|
+| AAAA | Maps a domain name to an IPv6 address |
+| CNAME | Alias of one name to another. It allows you to point multiple domain names to the same IP address |
+| MX | Specifies the mail server responsible for recieving email for the domain | 
+| TXT | Allows domain admis to insert any text into DNS. Commonly used for verification purposes and to hold SPF( Sender Policy Framework) data | 
+
+### How does DNS work:
+
+Converts domain names to IP addressed, involves multiple steps and servers
+
+#### DNS Hierarchy and Distribution
+
+![image](https://github.com/user-attachments/assets/6d174d2e-00b0-426a-9aad-f075398b0f8d)
+
+Root DNS Servers (Top Level)
+- Location: At the top of the hierarchy.
+- Purpose: The root servers know where to direct queries for Top-Level Domains (TLDs) (like .com, .org, .net, etc.).
+- Function: When a DNS resolver queries a root DNS server, it doesn't provide the final IP address but refers the query to the appropriate TLD server.
+
+
+TLD (Top-Level Domain) DNS Servers
+- Location: Just below the root servers.
+- Purpose: Responsible for managing top-level domains (e.g., .com, .org, .net, .uk, .fr, etc.).
+- Function: These servers know where the authoritative DNS servers for a specific domain (like example.com) are located. They don’t know the IP address of the domain itself, but they know which authoritative server holds that information.
+
+Authoritative DNS Servers (Second-Level Domains)
+- Location: Below the TLD servers.
+- Purpose: These servers are responsible for specific domain names and hold the actual DNS records for a domain (e.g., example.com).
+- Function: When a query reaches an authoritative DNS server, it can provide the requested information (e.g., IP address) from its DNS records, including A records (for IPv4), AAAA records (for IPv6), MX records (for email servers), NS records (for name servers), etc.
+
+Domain Name Resolvers (Recursive DNS Servers)
+- Location: Not part of the hierarchical structure, but critical in the DNS resolution process.
+- Purpose: These servers perform the recursive query on behalf of clients (like web browsers or applications). They traverse the hierarchy (from root to TLD to authoritative) to find the IP address associated with a domain.
+- Function: A recursive DNS server queries multiple DNS servers until it gets the final answer. It also caches the results of these queries to improve performance for future requests.
+
+#### DNS Resolution Process
+
+![image](https://github.com/user-attachments/assets/6c4da28b-4341-446b-b455-cb8ab6752b4d)
+
+1. Client Makes DNS Query
+When a user types a domain name (www.example.com) into their browser or when an application needs to resolve a domain name, the system (typically the operating system) first checks if the domain has been resolved before by looking at its local cache (stored DNS lookups).
+
+2. Query Sent to Recursive DNS Resolver
+The recursive DNS resolver (usually provided by an ISP or a public DNS service like Google DNS 8.8.8.8 or Cloudflare 1.1.1.1) receives the query.
+
+3. Recursive Resolver Queries Root DNS Servers
+If the recursive resolver cannot answer the query from its cache, it starts the resolution process from the top of the DNS hierarchy by querying one of the root DNS servers.
+
+4. Recursive Resolver Queries TLD DNS Servers
+The recursive resolver now contacts the appropriate TLD DNS server based on the domain extension (e.g., .com, .org).
+
+5. Recursive Resolver Queries Authoritative DNS Server
+Now the recursive resolver contacts the authoritative DNS server for the domain (example.com).
+
+6. Recursive Resolver Returns IP Address to Client
+Once the recursive resolver receives the final IP address from the authoritative DNS server, it: Caches the response to speed up future queries, Returns the IP address to the original client (e.g., the web browser).
+
+7. Client Connects to Web Server
+Finally, with the IP address in hand, the client's web browser (or application) initiates a connection to the web server using the IP address provided. The browser sends an HTTP or HTTPS request to the server to retrieve the web page.
+
+#### Domain Registar vs DNS Hosting provider;
+
+- Registar: Purchase and register domains
+- DNS Hosting: Operates DNS Nameservers
+
+When Domain Registar and DNS Hosting rpovider are the same company, the DNS zone is automatically created and hosted.
+
+If they are different, the name server needs to be provided with some information where the DNS zone is already hosted and is configured seperately. The process is known as DNS Query process.
+
+![image](https://github.com/user-attachments/assets/7bad12dd-2483-4c34-8cd2-f5000fe60511)
+
+
 
 
 
