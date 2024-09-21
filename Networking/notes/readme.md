@@ -188,7 +188,7 @@ Presentation Layer: If encrypted, the POST data is decrypted and translated to t
 
 Application Layer: The server processes the POST request and formulates an appropriate response (e.g., sending back a web page).
 
-## Introduction to DNS (Domain Name System)
+## Champter 3: Introduction to DNS (Domain Name System)
 
 This section will go through:
 
@@ -305,7 +305,7 @@ If they are different, the name server needs to be provided with some informatio
 
 ![image](https://github.com/user-attachments/assets/7bad12dd-2483-4c34-8cd2-f5000fe60511)
 
-### Netowrk DAebugging Tools:
+### Netowrk Debugging Tools:
 
 #### nslookup 
 
@@ -351,13 +351,45 @@ Format: IP_address domain_name  Example: 127.0.0.1 example.com
 
 ```
 
+## Chapter 4: Routing
 
+### What is routing and why it matters?
 
+Definition: Process of determining paths for data to travel across networks.
 
+Importance of Routing: Ensures data reaches its destination efficiently, fundamental for internet functionality.
 
+### How routing works?
 
+Routing process: Routers determine the best path and use routing tables to make decisions
 
+Key components: Routers and routing tables
 
+![image](https://github.com/user-attachments/assets/545edd05-47b6-4895-9244-b78e04ae5744)
+
+#### Why routing matters for devops:?
+
+- Network performance optimization
+- Ensures reliable application delivery
+- Crucial for managing complex infrastructures
+
+### Static vs dynamic routing
+
+In static routing, routes are manually configured by network administrators. Fixed paths are set by network administrators These routes do not change unless manually updated, and they define specific paths for packets to follow. They are simple to set up but not scalable.
+
+Dynamic routing uses routing protocols to automatically discover and maintain routes. Routers communicate with each other to share information about the network topology, and routes are updated dynamically based on network conditions (e.g., link failures or congestion). Dynamic routing is also scalable and adaptable.
+
+### Common routing protocols
+
+Routing protocols are algorithms that enable routers to communicate with each other to determine the best path for forwarding data packets across a network. They allow routers to dynamically share information about the network’s topology, automatically adjusting to changes enhancing network efficiency.
+
+Importance: They automate route updates and improve network reilience
+
+#### OSPF and BGP
+
+OSPF (open shortest path first) - OSPF is a widely used link-state routing protocol designed for use within an autonomous system. It is an interior gateway protocol, meaning it is used for routing traffic within a single organization's network, rather than between organizations
+
+BGP ( Border Gateway protocol) - BGP is the standard protocol used for routing traffic between different autonomous systems  on the internet. It is an Exterior Gateway Protocol and is the backbone of the internet, responsible for ensuring data is routed efficiently across large, complex networks that span multiple organizations and regions.
 
 
 
