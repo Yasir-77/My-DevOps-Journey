@@ -305,6 +305,71 @@ If they are different, the name server needs to be provided with some informatio
 
 ![image](https://github.com/user-attachments/assets/7bad12dd-2483-4c34-8cd2-f5000fe60511)
 
+### Netowrk DAebugging Tools:
+
+#### nslookup 
+
+nslookup (Name Server Lookup) is a command-line utility used for querying the Domain Name System (DNS) to obtain domain name or IP address mapping information. It allows users to look up DNS records, such as A records (for IPv4 addresses), AAAA records (for IPv6 addresses), and other types like MX records (mail servers), NS records (name servers), etc.
+
+Use the command **`nslookup`** followed bt the [domain]
+Exampole:
+```
+nslookup www.google.com
+```
+
+#### dig
+
+The dig (Domain Information Groper) command is a powerful network administration tool for querying the Domain Name System (DNS). It is used to perform DNS lookups, return detailed information about the DNS records for a given domain, and troubleshoot DNS problems.dig is more detailed than the nslookup command, and it is commonly used by system administrators and network engineers for debugging and investigating DNS issues.
+
+Use the comman **`dig`** followed by [domain] 
+Example:
+```
+dig www.google.com
+```
+
+
+### Using /etc/hosts on our local machine
+
+#### What is /etc/hosts?
+- A local file on your computer
+- Maps domain names to IP addresses
+- Takes precedence over DNS for specific entries
+
+#### Editing the /etc/hosts File?
+
+Step 1: Open the File in a Text Editor
+To modify the /etc/hosts file, you need root or administrator privileges. Use your favorite text editor with elevated permissions.
+```
+sudo vim /etc/hosts
+
+```
+
+Step 2: Add Your Entries
+Add a new line for each mapping you want to create. For example:
+```
+Format: IP_address domain_name  Example: 127.0.0.1 example.com
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
