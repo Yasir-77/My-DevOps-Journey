@@ -391,14 +391,205 @@ OSPF (open shortest path first) - OSPF is a widely used link-state routing proto
 
 BGP ( Border Gateway protocol) - BGP is the standard protocol used for routing traffic between different autonomous systems  on the internet. It is an Exterior Gateway Protocol and is the backbone of the internet, responsible for ensuring data is routed efficiently across large, complex networks that span multiple organizations and regions.
 
+## Chapter 5: Subnetting
+
+### Introduction to subnetting
+
+What is subnetting?
+
+Subnetting is dividing one large network into smaller networks, this improves network management and efficiency.
+
+#### Understanding CIDR notation
+
+CIDR stands for classless Inter-Domain Routing
+
+Format: IP_address/prefix_length
+
+Example; 192.168.1.0/24
+
+### Introduction to Binary Basics
+
+Consider the IP address: 192.168.1.1
+
+Step 1: Convert each octet to binary.
+
+192 in decimal → 11000000 in binary
+
+168 in decimal → 10101000 in binary
+
+1 in decimal → 00000001 in binary
+
+1 in decimal → 00000001 in binary
 
 
+Step 2: Combine all the binary octets together.
 
 
+192.168.1.1 → 11000000.10101000.00000001.00000001
+The binary representation of the IP address 192.168.1.1 is: 11000000 10101000 00000001 00000001
+
+#### Conversion Process
+To convert from decimal to binary for each octet, follow these steps:
+
+Divide the decimal number by 2.
+
+Write down the remainder.
+
+Repeat the division process with the quotient until the quotient is 0.
+
+The binary number is the remainders written in reverse order.
+
+Example: Convert 192 to Binary
+```
+192 ÷ 2 = 96, remainder = 0
+96 ÷ 2 = 48, remainder = 0
+48 ÷ 2 = 24, remainder = 0
+24 ÷ 2 = 12, remainder = 0
+12 ÷ 2 = 6, remainder = 0
+6 ÷ 2 = 3, remainder = 0
+3 ÷ 2 = 1, remainder = 1
+1 ÷ 2 = 0, remainder = 1
+```
+So, 192 in decimal is 11000000 in binary.
+
+### Calculating subnets
+
+A subnet mask defines network and host portions.
+
+![image](https://github.com/user-attachments/assets/12a2934d-068a-4513-8143-65f4ce0fbce9)
+
+Example Subnet 192.168.1.0/26
+
+IP Address: 11000000.10101000.00000001.00000000
+Subnet mask: 1111111.11111111.11111111.11000000
+
+The netowrk address: 192.168.1.0
+The Broadcast address: 192.168.1.63
+Usable IP ranges: 192.168.1.1 to 192.168.1.62
+
+### NAT (Network Address Translation)
+
+#### What is NAT
+
+NAT (Network Address Translation) is a method used in networking to Translate private IP addresses to a public IP adress. It facilitates communication between internal network and the internet.
+
+#### How does NAT work?
+
+- Internal devices use private IP addresses
+- Router translates private IP to public IP
+- Facilitates communication with external networks
 
 
+When a device on a private network (e.g., with an IP address 192.168.1.10) sends data to the internet:
+
+The packet's source IP address (e.g., 192.168.1.10) and source port (e.g., 5000) are used in the packet's header. The packet is sent to the NAT-enabled router, typically your home or office router.
+NAT translates the private IP address (e.g., 192.168.1.10) to the router's public IP address (e.g., 203.0.113.5). The router stores this mapping in a NAT table so that it knows how to translate the response back to the correct internal device later.
+The modified packet, now with the public IP address and the new port number, is forwarded to the internet.
+
+Inbound Traffic (Internet to Local):
+
+When a response packet comes back from the external server (e.g., a web page response from 198.51.100.1): The response packet's destination IP address is the public IP address of the router (e.g., 203.0.113.5).
+The router checks its NAT table to find which internal device the packet should go to by looking at the destination port (e.g., 50000). The router translates the public IP address back to the private IP address of the internal device (e.g., 192.168.1.10) and restores the original port number (e.g., 5000). The router then forwards the packet to the appropriate internal device (192.168.1.10).
+
+#### Types of NAT
+
+Static NAT:
+
+-Maps a single private IP address to a single public IP address.
+- It’s used for services like web servers where you want the internal device to always have the same public IP.
+
+Dynamic NAT:
+
+- Maps private IP addresses to a pool of public IP addresses.
+- It dynamically assigns a public IP from a pool as needed.
+
+PAT (Port Address Translation)
+- It allows multiple devices on a local network to be mapped to a single public IP address by assigning different port numbers to each session.
+- PAT is used for almost all home networks.
+
+#### Benfits of NAT for Devops Engineers
+
+- converts public IP addresses
+- Enhances netowrk security
+- simplifies network design and management
 
 
+## Chapter 6: Netowrk Troubleshooting
+
+### Why do we troublshoot networks?
+
+- Ensures smooth operation
+- Identify and fix network problems
+- Minimize downtime
+
+### Common Network Issues
+
+- Connectivity Loss
+- Slow netowrk performance
+- IP address comflicts
+- DNS resolution faliures
+
+### Identifying symtoms
+
+Example: Connectivity Loss
+
+Symptom: Devices cant access the network.
+
+Steps to diagnose:
+
+- Check physical connections
+- Verify networl configuration
+- Test with ping command
+
+### Netowrk tools to use:
+
+1. Ping
+
+Ping is a basic network utility used to check if a host (device) is reachable over a network. It works by sending ICMP (Internet Control Message Protocol) "echo request" packets to the target device and waiting for an "echo reply" in response.
+
+Use Case: Test network connectivity, measure round-trip time (latency), and packet loss.
+
+syntax: ping [IP address or domain]
+
+Example:
+```
+ping 8.8.8.8
+```
+2. Traceroute (Windows: tracert)
+
+Traceroute traces the path packets take to reach a destination by sending packets with increasing Time-to-Live (TTL) values. Each router along the path reduces the TTL by 1, revealing its address until the final destination is reached.
+
+Use Case: Diagnose routing issues by seeing where packets are being delayed or dropped.
+
+syntax: **`tracert`** [domain]
+
+Example (Windows):
+```
+tracert www.example.com
+```
+3. nslookup
+   
+nslookup is a command-line tool used to query DNS (Domain Name System) servers. It can be used to obtain domain name to IP address mappings and vice versa.
+
+Use Case: Troubleshoot DNS-related issues, check if DNS records are resolving correctly.
+
+Syntax **`nslookup`** [domain]
+
+Example:
+```
+nslookup www.example.com
+```
+
+Chapter 7: Cloud Netowrking
+
+What is cloud networking?
+
+It is the pratcise of managing and configuring networks in cloud environments. This is important for devops engineers as it ensures applications and services can communicate efficiently and securely.
+
+Key components of cloud networking:
+- VPCs (Virtual private clouds)
+- Subnets
+- Gateways
 
 
 
