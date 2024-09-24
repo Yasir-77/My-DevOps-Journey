@@ -32,3 +32,42 @@ Containers are running instances of the image. Containers are what you actually 
 
 An image is created using a Dockerfile. A Dockerfile is a text file that contains instructions for building a Docker image. Each instruction in the Dockerfile creates a new layer in the image.
 
+### Importance in Modern Development
+
+- Simpl;ified Deployment - Applications run consistently across different environments (e.g., development, testing, and production), avoiding the "it works on my machine" issue.
+- Imporved effeciency - Traditional virtual machines can be resource heavy and slow to start. Containers share the host OS kernel, making them more lightweight than virtual machines, reducing overhead.
+- Enhanced collaboration - Docker makes it easy to share development environments and applications with team members
+
+
+## IMPORTANT INTERVIEW QUESTION: VMs vs Containers
+
+A virtual machine allows multiple operating systems to run on a single physical machine. At the base you have the infrastructure, this is your physical or virtual hardware. On top of that sits the host operating system which is the primary operating system managing all the resources. Above the host OS is the hypervisor, the hypervisor is responsible for creating and managing virtual machines by allocating resources like CPU, memory and storage. Each virtual machine runs a full guest operating system insolated from the nothers. Within each virtual machine there is a guest operating system which is another operating system running ontop of the host. Each virtual machine would also have its own binaries and libraries and anything else an application needs to run. Within the setup there is strong isolation. Each VM is resource heavy which consumes alot of CPU memory and storage
+
+![image](https://github.com/user-attachments/assets/0e1e91dd-8982-495e-ac5b-7777998f433f)
+
+Containers are a more lightweight and efficient way to isolate applications. They share the host operating systems like VMs, but instead of using a hypervisor, theyll run on the docker engine. The docker engine sits on top of the host operating system and is responsible for running containers. Containers are isolated from each other at a process level, but they share the underlying OS Kernel making them much lighter than VMs. Difference is they dont have guest operating systems because they share the host operating system making them lighter than virtual machines. Within each container you have the application and its dependencies, binaries and libraries. This setup allows containers to start up quickly and use fewer resources compared to VMs
+
+![image](https://github.com/user-attachments/assets/209ad5ec-d370-4c06-81c1-19bf4091bf6b)
+
+###  Key differences between them:
+
+1 - Usage and Startup time:
+- VMs are heavier since each VM runs its own operating system. This increases overhead in terms of memory, CPU usage, and disk space. Booting a VM involves starting the entire OS, which can take time.
+- Containers are lighter because they share the host's OS kernel. They use less memory and CPU. Containers start almost instantly, as there's no need to boot a full OS.
+
+2 - Isolation:
+- VMs provide stronger isolation since each VM runs a separate OS and is abstracted at the hardware level. Better suited for cases where complete isolation between workloads is critical (e.g., multi-tenant environments).
+- Containers provide process-level isolation through the use of namespaces and cgroups. This isolation is effective but not as strong as VMs because containers share the OS kernel.
+
+3 - Portability:
+- VMs have less portability, can run on different hypervisors and platforms but require hypervisor compatibility. Moving VMs across different environments can be more complex because they carry a full OS and hardware abstraction.
+- Containers are highly portable. An application in a container will run the same way regardless of where it's deployed (e.g., on a developer's laptop, in the cloud, or on a production server) as long as there’s a compatible container runtime like Docker.
+
+
+
+
+
+
+
+
+
