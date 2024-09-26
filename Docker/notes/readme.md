@@ -63,6 +63,24 @@ Containers are a more lightweight and efficient way to isolate applications. The
 - VMs have less portability, can run on different hypervisors and platforms but require hypervisor compatibility. Moving VMs across different environments can be more complex because they carry a full OS and hardware abstraction.
 - Containers are highly portable. An application in a container will run the same way regardless of where it's deployed (e.g., on a developer's laptop, in the cloud, or on a production server) as long as there’s a compatible container runtime like Docker.
 
+## Docker images
+
+### Understanding Dockerfile
+
+A Dockerfile is a text file containing instructions on how to build a Docker image. It defines the environment and the steps needed to create a containerized application. Each instruction in the Dockerfile corresponds to a layer in the Docker image, making it easier to manage and track changes.
+
+#### Basic structure:
+![image](https://github.com/user-attachments/assets/43d320a0-1095-4d18-b257-08d27e806012)
+
+#### Example Dockerfile:
+![image](https://github.com/user-attachments/assets/288d0d9b-0a93-45ef-b2c7-3cb001f1747c)
+
+### Writing a Dockerfile
+
+
+
+  
+
 
 
 
