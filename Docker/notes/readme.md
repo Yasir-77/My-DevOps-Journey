@@ -75,17 +75,137 @@ A Dockerfile is a text file containing instructions on how to build a Docker ima
 #### Example Dockerfile:
 ![image](https://github.com/user-attachments/assets/288d0d9b-0a93-45ef-b2c7-3cb001f1747c)
 
-### Writing a Dockerfile
+## Writing a Dockerfile
 
+### First create a docker Git repositry 
 
+Create a docker folder on desktop
+```
+cd Desktop/Docker
+```
+Then create a README.md file, Type:
+```
+echo "# Dockerr Learning" > README.md
+```
+Then initialise folder as a git repository. Type:
+```
+git init
+```
 
-  
+Then add README.md file to the staging area
+```
+git add README.md
+```
 
+Then commit by typing:
+```
+git commit -m "Inital commit"
+```
+Then to change the branch from master to main type:
+```
+git branch -M main
+```
 
+### Creating a simple application to Dockerise
 
+First open the Docker learning file and open the terminal on VSCODE.
 
+Download Python to check this is installed type:
+```
+python --version
+```
+Then install Flask, flask is a simple and lightweight framework for creating web applications in Python. type:
+```
+pip install flask
+```
+Create a new directory, type:
+```
+mkdir hello_flask
+```
+Enter the directory, type:
+```
+cd hello_flask  
+```
+Create the appliction type:
+```
+touch app.py
+```
+In VSCODE copy the following script in the file:
+```
+from flask import Flask
 
+app = Flask(__name__)
 
+@app.route('/')
+def hello_world():
+    return 'Hello, World!'
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=5002)
+```
+Code breakdown:
+from flask import Flask - This imports the Flask class from the flask module, which allows you to create a Flask web application.
+
+app = Flask(__name__) - This line initializes the Flask application by creating an instance of the Flask class. The __name__ variable is used to indicate the name of the module in which the app is being initialized, which helps Flask locate resources.
+python
+
+@app.route('/') - This is a route decorator that defines the URL endpoint (/) for this function. In this case, when a user visits the root of the web app (e.g., http://localhost:5002/), this function will be called.
+
+def hello_world():
+    return 'Hello, World!'
+
+This is the function that is executed when a user visits the / route. It simply returns the string 'Hello, World!', which is displayed on the webpage.
+python
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=5002)
+
+This block ensures that the Flask app runs when the script is executed directly.
+The app.run() method starts the Flask development server.
+host='0.0.0.0': This allows the server to be accessed externally (not just on localhost but also from other devices on the same network).
+port=5002: The application will run on port 5002 (instead of Flask's default port 5000).
+
+To run the code type:
+```
+python app.py
+```
+
+### Containerise our web application 1:
+
+- First create a dockerfile type:
+```
+touch Dockerfile
+```
+- Write out the contents in the Dockerfile:
+```
+FROM python:3.8-slim
+WORKDIR /app
+COPY . .
+RUN pip install flask
+EXPOSE 5002
+CMD [ "python", "app.py" ] 
+```
+FROM python:3.8-slim - This sets the base image to Python 3.8-slim, which is a smaller, lightweight image of Python, making the resulting container more efficient. The slim version contains only the essentials for running Python applications.
+
+WORKDIR /app - This sets the working directory inside the container to /app. Any commands or files copied will now work relative to this directory.
+
+COPY . . - This copies the contents of the current directory (where your Dockerfile and Python code reside) into the container’s /app directory.
+
+RUN pip install flask - This runs the pip install flask command inside the container, installing Flask into the container’s Python environment.
+
+EXPOSE 5002 - This tells Docker that the container will listen on port 5002, which you set in your Flask app (app.run(host='0.0.0.0', port=5002)).
+
+CMD [ "python", "app.py" ] - This defines the command to run when the container starts. In this case, it starts the Flask app by running python app.py.
+
+- Next step is to build the docker image. Go to command line and type:
+```
+docker build -t hello-flask .
+```
+**`docker build`** command initiates the build process
+
+**`-t hello-flask`**  the -t tags the image with a name. In this case the name is hello-flask
+
+The . represents the current directory and tells docker to look for the docker file there
 
 
 
