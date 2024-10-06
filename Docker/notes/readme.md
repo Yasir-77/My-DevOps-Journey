@@ -170,7 +170,7 @@ To run the code type:
 python app.py
 ```
 
-### Containerise our web application 1:
+### Containerise web application 1:
 
 - First create a dockerfile type:
 ```
@@ -205,7 +205,49 @@ docker build -t hello-flask .
 
 **`-t hello-flask`**  the -t tags the image with a name. In this case the name is hello-flask
 
-The . represents the current directory and tells docker to look for the docker file there
+The **`.`** represents the current directory and tells docker to look for the docker file there.
+
+Docker will execute each intruction in Docker file. Image will be created and ready to use.
+
+
+### Containerise web application 2:
+
+With the docker image now built it can be run as a container. To run it as a container type:
+```
+docker run -d -p 5002:5002 hello-flask
+```
+
+Breakdown:
+
+**`docker run`**: Starts a new Docker container from an image.
+
+**`-d`**: Runs the container in detached mode, meaning it runs in the background.
+
+**`-p 5002:5002`**: Maps port 5002 on your local machine (host) to port 5002 inside the container. This allows you to access the Flask app from your browser via http://localhost:5002.
+
+**`hello-flask`**: Specifies the name of the image you built earlier, which Docker will use to create and run the container.
+
+To verify docker container is running type:
+```
+docker ps
+```
+The container ID will appear aswell as other information
+
+To stop the container use the command **`docker stop`** followed by the container ID.
+
+## Docker networking
+
+### Basic Networking concepts in Docker
+
+- Bridge network - A bridge network is a default network mode for containers on the same machine. containers connected to the bridge network can communicate with eachother using their own IP addresses. It is isolated from your host machine network which provides an extra layer of security.
+
+- Host network - In host mode, a container uses the host machines network directly without any isolation between the container and the host.
+
+- None network - The none network disables all networking for a container. The container can’t communicate with other containers, the host, or external networks.
+
+Docker networking provides flexibility for container-to-container and container-to-host communication, with a range of networking drivers available to suit different use cases.
+
+
 
 
 
