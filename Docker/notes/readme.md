@@ -247,6 +247,178 @@ To stop the container use the command **`docker stop`** followed by the containe
 
 Docker networking provides flexibility for container-to-container and container-to-host communication, with a range of networking drivers available to suit different use cases.
 
+### Linking containers together
+
+To link the flask application to a MySQL database container follow the following steps:
+
+#### 1 - Modify the file og the existing flask app to connect to a MySQL database. Copy the following code:
+```
+# app.py
+
+from flask import Flask
+import MySQLdb
+
+app = Flask(__name__)
+
+@app.route('/')
+def hello_world():
+    # Connect to the MySQL database
+    db = MySQLdb.connect(
+        host="mydb",    # Hostname of the MySQL container
+        user="root",    # Username to connect to MySQL
+        passwd="...",  # Password for the MySQL user
+        db="mysql"      # Name of the database to connect to
+    )
+    cur = db.cursor()
+    cur.execute("SELECT VERSION()")
+    version = cur.fetchone()
+    return f'Hello, World! MySQL version: {version[0]}'
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=5002)
+```
+Simple breakdown of code:
+
+1. Imports
+```
+from flask import Flask
+import MySQLdb
+```
+Flask: This is a lightweight Python web framework used to create web applications.
+
+MySQLdb: This module allows the Flask application to connect to a MySQL database. It provides an interface for running SQL queries and interacting with the MySQL server.
+
+2. Connecting to the MySQL Database
+```
+db = MySQLdb.connect(
+    host="mydb",    # Hostname of the MySQL container
+    user="root",    # Username to connect to MySQL
+    passwd="my-secret-pw",  # Password for the MySQL user
+    db="mysql"      # Name of the database to connect to
+)
+```
+MySQLdb.connect(): This function establishes a connection to the MySQL database.
+
+host="mydb": The hostname or IP address where the MySQL server is running. In this case, mydb is used, which would be the hostname of the MySQL container in a Docker Compose setup (since the containers are networked together and can communicate using service names).
+
+user="root": The MySQL username. Here, the root user is used.
+
+passwd="...": The password for the root user.
+
+db="mysql": The name of the database to connect to. In this case, it connects to the default mysql database.
+
+#### 2 - Ensure Dockerfile is set up to install the necessary MySQL client library. Type the code: 
+```
+FROM python:3.8-slim
+
+WORKDIR /app
+
+COPY . .
+
+RUN apt-get update && apt-get install -y \
+    gcc \
+    python3-dev \
+    libmariadb-dev \
+    pkg-config
+
+RUN pip install flask mysqlclient
+
+EXPOSE 5002
+
+CMD ["python", "app.py"]
+```
+Simple Breakdown of code:
+
+The only changes that are made are:
+
+1. Install System Dependencies
+```
+RUN apt-get update && apt-get install -y \
+    gcc \
+    python3-dev \
+    libmariadb-dev \
+    pkg-config
+```
+apt-get update: Updates the package lists in the container to ensure you have the latest version information.
+
+gcc: The GNU C compiler is required because mysqlclient (a Python package that interacts with MySQL/MariaDB) needs to compile C extensions.
+
+python3-dev: Provides the header files and libraries needed to build Python packages that require compilation, such as mysqlclient.
+
+libmariadb-dev: Installs the MariaDB development libraries and headers, which are needed to compile the mysqlclient library (since MySQL and MariaDB are compatible).
+
+pkg-config: Helps in managing compilation of libraries by making it easier to include paths and link necessary libraries.
+
+2.  Install Python Dependencies
+```
+RUN pip install flask mysqlclient
+```
+pip install: Installs the required Python packages.
+
+flask: The web framework used to create your application.
+
+mysqlclient: A Python package that allows the Flask app to connect to MySQL/MariaDB databases. Since mysqlclient is a C-based library, it needs to be compiled, which is why the necessary system dependencies were installed earlier.
+
+#### Next step is to build and run the updated containers.
+
+1. Create a custom network - a custom network allows containers to communicate with each other using container names instead of IP addresses. In the integrated terminal in VSCode type:
+```
+docker network create my-custom-network
+```
+This will craste a custom network that will be used to connect the flask and MySQL containers together.
+
+2. Run the containers:
+
+To run the MySQL container type:
+```
+docker run -d --name mydb --network my-custom-network -e MYSQL_ROOT_PASSWORD=(type_your_password)
+```
+**`--name mydb`**: This names the container mydb, which makes it easier to refer to this container in commands or when linking other containers to it.
+
+**`--network my-custom-network`**: Specifies the custom Docker network that the container will join. In this case, it will join the network my-custom-network. This network allows containers to communicate with each other by name (like how app.py connects to mydb).
+
+**`-e MYSQL_ROOT_PASSWORD=your_password`**:
+
+This environment variable sets the root password for the MySQL server inside the container. Replace your_password with a secure password of your choice.
+
+#### Build the docker image for the flask app with the updated docker file. Type the following in the VSCode terminal:
+```
+docker build -t hello-flask-mysql .
+```
+Then run the flask application type:
+```
+docker run -d --name myapp2 --network my-custom-network -p 5002:5002 hello-flask-mysql
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
