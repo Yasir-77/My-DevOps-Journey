@@ -266,7 +266,7 @@ def hello_world():
     db = MySQLdb.connect(
         host="mydb",    # Hostname of the MySQL container
         user="root",    # Username to connect to MySQL
-        passwd="...",  # Password for the MySQL user
+        passwd="My-secret-pw",  # Password for the MySQL user
         db="mysql"      # Name of the database to connect to
     )
     cur = db.cursor()
@@ -297,15 +297,11 @@ db = MySQLdb.connect(
     db="mysql"      # Name of the database to connect to
 )
 ```
-MySQLdb.connect(): This function establishes a connection to the MySQL database.
-
-host="mydb": The hostname or IP address where the MySQL server is running. In this case, mydb is used, which would be the hostname of the MySQL container in a Docker Compose setup (since the containers are networked together and can communicate using service names).
-
-user="root": The MySQL username. Here, the root user is used.
-
-passwd="...": The password for the root user.
-
-db="mysql": The name of the database to connect to. In this case, it connects to the default mysql database.
+- MySQLdb.connect(): This function establishes a connection to the MySQL database.
+- host="mydb": The hostname or IP address where the MySQL server is running. In this case, mydb is used, which would be the hostname of the MySQL container in a Docker Compose setup (since the containers are networked together and can communicate using service names).
+- user="root": The MySQL username. Here, the root user is used.
+- passwd="My-secret-pw": The password for the root user.
+- db="mysql": The name of the database to connect to. In this case, it connects to the default mysql database.
 
 #### 2 - Ensure Dockerfile is set up to install the necessary MySQL client library. Type the code: 
 ```
@@ -339,13 +335,10 @@ RUN apt-get update && apt-get install -y \
     libmariadb-dev \
     pkg-config
 ```
-apt-get update: Updates the package lists in the container to ensure you have the latest version information.
-
-gcc: The GNU C compiler is required because mysqlclient (a Python package that interacts with MySQL/MariaDB) needs to compile C extensions.
-
-python3-dev: Provides the header files and libraries needed to build Python packages that require compilation, such as mysqlclient.
-
-libmariadb-dev: Installs the MariaDB development libraries and headers, which are needed to compile the mysqlclient library (since MySQL and MariaDB are compatible).
+- apt-get update: Updates the package lists in the container to ensure you have the latest version information.
+- gcc: The GNU C compiler is required because mysqlclient (a Python package that interacts with MySQL/MariaDB) needs to compile C extensions.
+- python3-dev: Provides the header files and libraries needed to build Python packages that require compilation, such as mysqlclient.
+- libmariadb-dev: Installs the MariaDB development libraries and headers, which are needed to compile the mysqlclient library (since MySQL and MariaDB are compatible).
 
 pkg-config: Helps in managing compilation of libraries by making it easier to include paths and link necessary libraries.
 
@@ -371,7 +364,7 @@ This will craste a custom network that will be used to connect the flask and MyS
 
 To run the MySQL container type:
 ```
-docker run -d --name mydb --network my-custom-network -e MYSQL_ROOT_PASSWORD=(type_your_password)
+docker run -d --name mydb --network my-custom-network -e MYSQL_ROOT_PASSWORD=(My-secret-pw)
 ```
 **`--name mydb`**: This names the container mydb, which makes it easier to refer to this container in commands or when linking other containers to it.
 
@@ -390,6 +383,82 @@ Then run the flask application type:
 docker run -d --name myapp2 --network my-custom-network -p 5002:5002 hello-flask-mysql
 ```
 
+## Docker compose
+
+### Introduction to Docker compose
+
+Docker compose is a tool that allows you to define and manage multi container docker applications. It simplifies the process of setting up and orchestrating multiple services (containers) that need to work together, such as a web server, a database, or other dependencies, all defined in a single file called docker-compose.yml.With Docker Compose, you can manage containers as a group instead of handling each container individually.
+
+Key features:
+
+- Docker-compose.yml file 
+- Commands - 
+- Networking
+
+### Importance in DevOps:
+
+- Makes Development and testing easier - instead of manually setting everything, you can define everything in a docker-compose.yml file and run a single command to start the environment.
+- Ensures consistency - Ensures that everyone in your team is working in the same environment. By definig the environment in a docker-compose.yml file you guarantee that every developer, tester and CICD pipeline uses the exact same setup.
+- Enhances teamwork - Becomes easier to share code configurations and the environment set up itself. Docker-compose makes it easier to version control your infrastructure
+
+### Writing a docker-compose.yml
+
+For the Hello World application that connects to MySQL database, a dock-compose.yml file is going to be created that runs both services with just one command
+
+1- Create Docker-compose.yml file
+```
+touch docker-compose.yml
+```
+2- Open the file and type the following code:
+```
+version: '3.8'
+
+services:
+  web:
+    build: .
+    ports:
+      - "5000:5000"
+    depends_on:
+      - db
+
+  db:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: my-secret-pw
+```
+Code Breakdown:
+
+1. Version
+```
+version: '3.8'
+```
+This specifies the Compose file format version. Version 3.8 is commonly used with newer Docker features, and it ensures compatibility with Docker's latest capabilities.
+
+2. Services
+   
+The services: section defines the containers that Docker Compose will create and manage. In this case, there are two services: web and db.
+```
+  web:
+    build: .
+    ports:
+      - "5002:5002"
+    depends_on:
+      - db
+```
+- build: .: This means Docker will build the web service's image from the Dockerfile located in the current directory (.). This is where the application's source code resides, and the Dockerfile defines how to build the app.
+- ports:: The web service will expose port 5002 on the host, mapped to port 5002 inside the container. This allows the Flask app to be accessible at http://localhost:5002.
+- depends_on:: This specifies that the web service depends on the db service. This means that the db container will be started first before the web service. However, this does not wait for the database to be fully ready (i.e., it doesn’t guarantee the MySQL service is ready to accept connections), so you might still need a retry logic in the web app for connecting to the database.
+
+3. Database (MySQL) Service
+```
+  db:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: (My-secret-pw)
+```
+- image: mysql:5.7: This specifies that the db service will use the MySQL 5.7 image from Docker Hub. This image contains the MySQL server software.
+- environment:: This section defines environment variables for the MySQL container.
+- MYSQL_ROOT_PASSWORD: This sets the root password for the MySQL server. In this case, it is set to "My-secret-pw". This password will be required to access the MySQL database as the root user.
 
 
 
