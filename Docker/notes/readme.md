@@ -419,9 +419,9 @@ services:
     ports:
       - "5000:5000"
     depends_on:
-      - db
+      - mydb
 
-  db:
+  mydb:
     image: mysql:5.7
     environment:
       MYSQL_ROOT_PASSWORD: my-secret-pw
@@ -443,15 +443,15 @@ The services: section defines the containers that Docker Compose will create and
     ports:
       - "5002:5002"
     depends_on:
-      - db
+      - mydb
 ```
 - build: .: This means Docker will build the web service's image from the Dockerfile located in the current directory (.). This is where the application's source code resides, and the Dockerfile defines how to build the app.
 - ports:: The web service will expose port 5002 on the host, mapped to port 5002 inside the container. This allows the Flask app to be accessible at http://localhost:5002.
-- depends_on:: This specifies that the web service depends on the db service. This means that the db container will be started first before the web service. However, this does not wait for the database to be fully ready (i.e., it doesn’t guarantee the MySQL service is ready to accept connections), so you might still need a retry logic in the web app for connecting to the database.
+- depends_on:: This specifies that the web service depends on the mydb service. This means that the mydb container will be started first before the web service. However, this does not wait for the database to be fully ready (i.e., it doesn’t guarantee the MySQL service is ready to accept connections), so you might still need a retry logic in the web app for connecting to the database.
 
 3. Database (MySQL) Service
 ```
-  db:
+  mydb:
     image: mysql:5.7
     environment:
       MYSQL_ROOT_PASSWORD: (My-secret-pw)
