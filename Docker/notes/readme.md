@@ -460,6 +460,23 @@ The services: section defines the containers that Docker Compose will create and
 - environment:: This section defines environment variables for the MySQL container.
 - MYSQL_ROOT_PASSWORD: This sets the root password for the MySQL server. In this case, it is set to "My-secret-pw". This password will be required to access the MySQL database as the root user.
 
+## Docker registries
+
+### Introduction to registries
+
+A docker registry is a storage and distribution hub for docker images, a system for storing and sharing docker images.
+
+Key features:
+
+- Public registry - Docker Hub is the most widely used public Docker registry provided by Docker Inc. It hosts millions of images that can be freely accessed by anyone.
+- Private registry - A private Docker registry can be set up. This is especially useful for organizations that need to store images internally without exposing them to the public.
+Tools like Docker Registry (self-hosted) and third-party services (like AWS Elastic Container Registry, Azure Container Registry, Google Container Registry) allow you to maintain your own image storage.
+
+Importance of Docker registries in Devops:
+
+- Streamline deployment: When docker images are stored in the registry, they can be easily accessed and deployed across multiple envirnoments from development to production. Makes it faster and more reliable to roll out new features and updates
+- Enhance collaboration: When images are stored in a centralised registry, everyone in your team has access to the same resources. This makes it easier to share and manage images, improving overall teamwork and effieciency .
+- Ensures consistency: By storing images in a registry , that exact same image is being used in development, testing and production.
 
 
 
