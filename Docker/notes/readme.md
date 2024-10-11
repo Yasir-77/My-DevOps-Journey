@@ -479,6 +479,41 @@ Importance of Docker registries in Devops:
 - Ensures consistency: By storing images in a registry , that exact same image is being used in development, testing and production.
 
 
+#### How to use DockerHub:
+
+DockerHub is a public registry where you can store, share and access docker images.
+
+Reasons why DockerHub is used:
+- Accessibiltiy: Since Docker is public, you can easily pull images to start projects
+- DockerHub hosts a large collection of community contributed images and official images maintained by trusted resources e.g mysql, neo4j and mongo. They are secure and up to date.
+- DockerHub offers a free tier that allows you to host public repositories. Good for open source projects.
+
+
+1 - On the command line connect DockerHub account to the terminal. Type the following: (Where <Username> enter actual username) Fololwed by your password
+```
+docker login -u <Username>
+```
+2 - To push image to DockerHub:
+
+First create a repository on DockerHub by clicking on create repository. Name the repository flask-mysql.
+
+Then you need to build and tag the image from Dockerfile with a specific name and version. Type the following:
+```
+docker build -t yasircoderco77/flask-mysql:v1 .
+```
+Once image is built, push it to dockerHub. Type:
+```
+docker push yasircoderco77/flask-mysql:v1 
+```
+To pull the image and download it to your local machine. Type:
+```
+docker pull yasircoderco77/flask-mysql:v1 
+```
+
+
+
+
+
 
 
 
