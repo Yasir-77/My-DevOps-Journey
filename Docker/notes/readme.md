@@ -479,7 +479,7 @@ Importance of Docker registries in Devops:
 - Ensures consistency: By storing images in a registry , that exact same image is being used in development, testing and production.
 
 
-#### How to use DockerHub:
+### How to use DockerHub:
 
 DockerHub is a public registry where you can store, share and access docker images.
 
@@ -510,7 +510,7 @@ To pull the image and download it to your local machine. Type:
 docker pull yasircoderco77/flask-mysql:v1 
 ```
 
-Pushing Images to Amazon ECR:
+#### Pushing Images to Amazon ECR:
 
 Step 1 - Create/log in to an Amazon AWS account. Then type in ECR (Elasic Container Registry and click on the service.
 
@@ -538,6 +538,11 @@ Run the following command to push this image to your newly created AWS repositor
 ```
 docker push 654654437668.dkr.ecr.us-east-1.amazonaws.com/flask-mysql:latest
 ```
+
+#### Using image from our ECR Repository
+
+
+
 
 
 
