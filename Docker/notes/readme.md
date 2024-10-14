@@ -541,7 +541,145 @@ docker push 654654437668.dkr.ecr.us-east-1.amazonaws.com/flask-mysql:latest
 
 #### Using image from our ECR Repository
 
+1. Edit the Dockerfile
+```
+version: '3.8'
 
+services:
+  web:
+    image: <ECR URL>
+    ports:
+      - "5002:5002"
+    depends_on:
+      - mydb
+
+  mydb:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: my-secret-pw
+```
+Added image: <ECR URL> this is so the image is pulled from the ECR repository instead of building the image that we had locally.
+
+2. Create a custom Docker network
+```
+docker network create my-app-network
+```
+This command creates a custom Docker network named my-app-network which allows containers to communicate with each other over this private network.
+By connecting containers to the same network, they can communicate using container names instead of IP addresses.
+
+3. Run a MySQL container on the custom network
+```
+docker run -d --name mydb --network my-app-network -e MYSQL_ROOT_PASSWORD=my-secret-pw mysql:5.7
+```
+This command runs a MySQL5.7 container in detached mode (-d), naming the container mydb.
+
+The environment variable MYSQL_ROOT_PASSWORD is set to my-secret-pw to configure the MySQL root password.
+
+The container is connected to the my-app-network so that other containers (e.g., your Flask app) can communicate with it by using the container name (mydb).
+
+4. Run a Flask container on the custom network, mapping port 5002 and using the specified image
+```
+docker run -p 5002:5002 --network my-app-network <ECR URL>
+```
+This command runs a Flask application that is built into the flask-mysql image hosted in your AWS ECR repository.
+
+The -p 5002:5002 option maps port 5002 on the host machine to port 5002 in the container, making the Flask app accessible from outside the container on port 5002.
+
+The --network my-app-network option connects this container to the same custom network (my-app-network) as the MySQL container.
+
+Inside the Flask app, mydb will be used as the hostname when connecting to the MySQL container.
+
+### Important Docker commands:
+
+**`docker images`** - The docker images command is used to list all the Docker images that are stored locally on your machine. It provides details about each image, such as the repository name, tag, image ID, creation date, and size.
+
+**`docker inspect`** followed by image ID - The docker inspect command provides detailed, low-level information about Docker objects like containers, images, volumes, or networks. The information is returned in JSON format, giving a comprehensive view of the object's configuration and current status.
+
+**`docker rmi`** followed by image ID - The docker rmi command is used to remove Docker images from your local machine. It's useful for cleaning up unused or outdated images to free up disk space.
+
+**`docker system prune`** - The docker system prune command is used to clean up Docker resources that are not in use. It helps free up disk space by removing unused containers, images, networks, and volumes. By default, it removes stopped containers, unused networks, dangling images (untagged), and build caches.
+
+**`docker ps`** - The docker ps command lists all running Docker containers on your system. By default, it shows only containers that are currently up and running.
+
+**`docker stop`** follwed by container ID - The docker stop command is used to stop a running Docker container. When you stop a container, it sends a terminate signal to the container’s main process and allows it to shut down gracefully.
+
+**`docker rm`** followed by container ID - The docker rm command is used to remove a Docker container. This command deletes the container and its metadata, but it does not delete the associated image or volumes unless explicitly specified.
+
+### Multistage builds
+
+Multistage bulds allow you to use multiple from statements in your dockerfile to create multiple build stages. This technique is mainly used to reduce the size of Docker images by separating the build and runtime environments.
+
+The following is the original Dockerfile that was created:
+```
+FROM python:3.8-slim
+
+WORKDIR /app
+
+COPY . .
+
+RUN apt-get update && apt-get install -y \
+    gcc \
+    python3-dev \
+    libmariadb-dev \
+    pkg-config
+
+RUN pip install flask mysqlclient
+
+EXPOSE 5002
+
+CMD ["python", "app.py"]
+```
+To utilize the multistage builds the code would change to:
+```
+# Stage 1: Build stage
+FROM python:3.8-slim as build
+
+WORKDIR /app
+
+RUN apt-get update && apt-get install -y \
+    gcc \
+    python3-dev \
+    libmariadb-dev \
+    pkg-config
+
+COPY . .
+
+RUN pip install flask mysqlclient
+
+#Stage 2: Production stage
+
+FROM python:3.8-slim
+
+WORKDIR /app
+
+COPY --from=build /app /app
+
+EXPOSE 5002
+
+CMD ["python", "app.py"]
+```
+
+Breakdown:
+
+Stage 1 (Build stage):
+
+- You use python:3.8-slim as the base image.
+
+- Install the required packages (like gcc, libmariadb-dev, etc.) to compile the mysqlclient library and other Python dependencies.
+
+- Copy the source code into the /app directory.
+
+- Use pip to install the necessary Python dependencies (flask and mysqlclient).
+
+Stage 2 (Production stage):
+
+- You start with a fresh python:3.8-slim image to avoid having build dependencies (like gcc or python3-dev) in the final production image.
+
+- Use COPY --from=build to copy the application files and the installed dependencies from the first stage (build stage) to the production image.
+
+- Expose port 5002 for the Flask application.
+
+- Use the CMD to run the Flask app.
 
 
 
