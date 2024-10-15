@@ -63,7 +63,7 @@ Containers are a more lightweight and efficient way to isolate applications. The
 - VMs have less portability, can run on different hypervisors and platforms but require hypervisor compatibility. Moving VMs across different environments can be more complex because they carry a full OS and hardware abstraction.
 - Containers are highly portable. An application in a container will run the same way regardless of where it's deployed (e.g., on a developer's laptop, in the cloud, or on a production server) as long as there’s a compatible container runtime like Docker.
 
-## Docker images
+## Chapter 2: Creating Docker images
 
 ### Understanding Dockerfile
 
@@ -235,7 +235,7 @@ The container ID will appear aswell as other information
 
 To stop the container use the command **`docker stop`** followed by the container ID.
 
-## Docker networking
+## Chapter 3: Docker networking
 
 ### Basic Networking concepts in Docker
 
@@ -383,7 +383,7 @@ Then run the flask application type:
 docker run -d --name myapp2 --network my-custom-network -p 5002:5002 hello-flask-mysql
 ```
 
-## Docker compose
+## Chapter 4: Docker compose
 
 ### Introduction to Docker compose
 
@@ -460,7 +460,7 @@ The services: section defines the containers that Docker Compose will create and
 - environment:: This section defines environment variables for the MySQL container.
 - MYSQL_ROOT_PASSWORD: This sets the root password for the MySQL server. In this case, it is set to "My-secret-pw". This password will be required to access the MySQL database as the root user.
 
-## Docker registries
+## Chapter 5: Docker registries
 
 ### Introduction to registries
 
@@ -681,7 +681,7 @@ Stage 2 (Production stage):
 
 - Use the CMD to run the Flask app.
 
-## Kubernetes Introduction
+## Chapter 6: Kubernetes Introduction
 
 ### What is kubernetes?
 
