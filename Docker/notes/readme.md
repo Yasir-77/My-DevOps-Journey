@@ -697,6 +697,22 @@ It helps solve the challenges that arise when you move beyond a handful of conta
 
 Docker Swarm and Kubernetes are both container orchestration platforms designed to manage, deploy, and scale containerized applications. However, they differ significantly in terms of features, complexity, and use cases. Here’s a comparison of Docker Swarm and Kubernetes:
 
+| DockerSwarm  | Kubernetes  | 
+|-------|------|
+| No auto scaling  | Auto scaling |
+| Good community | Great active community | 
+| Easy to start a Cluster | Difficult to start a cluster   | 
+| Limited to the Docker API's capabilities | Not limited to the Docker API's capabilities   | 
+
+### Why use Orchestration tools?
+
+- Are built to manage large-scale deployments - They can handle a large number of containers spread across multiple machines, this makes it easier to manage complex environments by automating the deployment operation and scaling of containers.
+- Ensure High availability - They automatically monitor the state of your containers, they can restart or relocate them in case of faliure, applications can recover without manual intervention.
+- Automate scaling and recovery - Orchestration tools monitor resource usage (CPU, memory, etc.) and can scale applications up or down based on real-time demand, ensuring efficient use of resources. Built-in self-healing capabilities automatically replace failed or unhealthy containers to maintain the desired state of the application.
+- Simple to use, Enhances reliability and resource utilization.
+
+
+
 
 
 
