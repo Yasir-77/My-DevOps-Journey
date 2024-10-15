@@ -681,6 +681,28 @@ Stage 2 (Production stage):
 
 - Use the CMD to run the Flask app.
 
+## Kubernetes Introduction
+
+### What is kubernetes?
+
+Kubernetes (often abbreviated as K8s) is an open-source platform designed to automate the deployment, scaling, and operation of containerized application. It provides advanced features like container orchestration, automatic scaling and self-healing these features ensure application runs smoothly and efficiently.
+
+### Why use kubernetes?
+
+Kubernetes is a powerful amanager that oversees all of your containers. It makes sure all of the containers are deployed correctly, easy to scale up or down and meet demand and automatically recovers from faliure. This level of automation and management is crucial when dealing with complex distributed systems when manual intervention would be time consuming and error prone.
+
+It helps solve the challenges that arise when you move beyond a handful of containers on a single machine to managiong a fleet of machines across multiple machines. Allows focus more on application than the intricacies of managing individual containers.
+
+### Docker swarm vs Kubernetes
+
+Docker Swarm and Kubernetes are both container orchestration platforms designed to manage, deploy, and scale containerized applications. However, they differ significantly in terms of features, complexity, and use cases. Here’s a comparison of Docker Swarm and Kubernetes:
+
+
+
+
+
+
+
 
 
 
