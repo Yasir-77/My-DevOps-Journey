@@ -8,7 +8,7 @@
 
 # Table of Contents
 
-Chapter 1: [Introduction to Networking Fundamentals] (https://github.com/Yasir-77/My-DevOps-Journey/tree/main/Networking/notes#chapter-1-introduction-to-networking-fundamentals)
+Chapter 1: [Introduction to Networking Fundamentals](https://github.com/Yasir-77/My-DevOps-Journey/tree/main/Networking/notes#chapter-1-introduction-to-networking-fundamentals)
 
 Chapter 2: [OSI Model]
 
