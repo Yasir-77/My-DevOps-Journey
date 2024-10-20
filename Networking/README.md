@@ -10,9 +10,9 @@
 
 Chapter 1: [Introduction to Networking Fundamentals](https://github.com/Yasir-77/My-DevOps-Journey/tree/main/Networking/notes#chapter-1-introduction-to-networking-fundamentals)
 
-Chapter 2: [OSI Model]
+Chapter 2: [OSI Model](https://github.com/Yasir-77/My-DevOps-Journey/blob/main/Networking/notes/readme.md#chapter-2-osi-model-open-system-interconnection-model)
 
-Chapter 3: [DNS]
+Chapter 3: [DNS](
 
 Chapter 4: [Routing]
 
