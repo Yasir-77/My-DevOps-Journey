@@ -12,13 +12,13 @@ Chapter 1: [Introduction to Networking Fundamentals](https://github.com/Yasir-77
 
 Chapter 2: [OSI Model](https://github.com/Yasir-77/My-DevOps-Journey/blob/main/Networking/notes/readme.md#chapter-2-osi-model-open-system-interconnection-model)
 
-Chapter 3: [DNS](
+Chapter 3: [DNS](https://github.com/Yasir-77/My-DevOps-Journey/tree/main/Networking/notes#champter-3-introduction-to-dns-domain-name-system)
 
-Chapter 4: [Routing]
+Chapter 4: [Routing](https://github.com/Yasir-77/My-DevOps-Journey/tree/main/Networking/notes#chapter-4-routing)
 
-Chapter 5: [Subnetting]
+Chapter 5: [Subnetting](https://github.com/Yasir-77/My-DevOps-Journey/tree/main/Networking/notes#chapter-5-subnetting)
 
-Chapter 6: [Network Troubleshooting]
+Chapter 6: [Network Troubleshooting](https://github.com/Yasir-77/My-DevOps-Journey/tree/main/Networking/notes#chapter-6-netowrk-troubleshooting)
 
 Chapter 7: [Cloud-Native Networking]
 
