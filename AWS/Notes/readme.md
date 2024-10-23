@@ -56,6 +56,7 @@ Most AWS services are Region-scoped:
 
 # Chapter 3: Billing and MFA
 
+## Billing
 AWS billing is based on a pay-as-you-go pricing model, meaning you only pay for the services and resources you use. AWS offers a variety of pricing models, payment tools, and features to help users manage and optimize costs.
 
 AWS Budgets:
@@ -68,13 +69,45 @@ Billing Dashboard:
 The AWS Billing Dashboard provides an overview of your current and historical usage and costs.
 Accessible from the AWS Management Console, it shows your monthly charges, forecasts, and cost breakdown by services and regions.
 
+## MFA
 AWS Multi-Factor Authentication (MFA) is an additional layer of security for protecting your AWS account. It requires users to provide two forms of authentication: something they know (password) and something they have (an MFA device).
 
 Benefits of MFA:
 
 - Enhanced Security: MFA adds a layer of security by requiring users to present a second piece of information (typically a one-time code) in addition to their username and password.
-
 - Protection from Unauthorized Access: Even if someone steals your password, they cannot access your account without the second factor (the MFA code).
+
+MFA device options in AWS:
+
+Virtual MFA device - Support for multiple tokens on a single device.
+
+Universal 2nd factor security key - support for multiple root and IAM users using a single security key.
+
+Hardware key fob MFA device - provided by Gernalto (3rd party)
+
+Hardware key fob MFA device for AWS GocCloud (US) - Support for multiple tokens on a single device.
+
+# Chapter 4: IAM
+IAM stands for Identity and Access Management
+
+## Users and Groups:
+- Root account created by default, shouldnt be used or shared.
+- Users are people within your organization, and can be grouped.
+- Groups only contain users, not other groups.
+- Users dont have to belong to a group, and a user can belong to multiple groups.
+
+## IAM Permissions
+- Users or Groups can be asigfned JSON documents called policies.
+- These policies define the permissions of the users
+- In AWS apply the least privilege principle: dont give more permissions than the user needs.
+
+## IAN Policies structure:
+![image](https://github.com/user-attachments/assets/23bb2860-912b-414b-8ad6-cc66caea3fc0)
+
+
+
+
+
 
 
 
