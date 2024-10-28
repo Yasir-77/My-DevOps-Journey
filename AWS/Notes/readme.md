@@ -96,13 +96,57 @@ IAM stands for Identity and Access Management
 - Groups only contain users, not other groups.
 - Users dont have to belong to a group, and a user can belong to multiple groups.
 
-## IAM Permissions
+## IAM Permissions:
 - Users or Groups can be asigfned JSON documents called policies.
 - These policies define the permissions of the users
 - In AWS apply the least privilege principle: dont give more permissions than the user needs.
 
-## IAN Policies structure:
+## IAM Policies structure:
 ![image](https://github.com/user-attachments/assets/23bb2860-912b-414b-8ad6-cc66caea3fc0)
+
+## How can Users access AWS:
+
+To access AWS there are three options:
+- AWS management console: protected by password + MFA
+- AWS command Line Interface (CLI): protected by access keys
+- AWS Software Developer Kit (SDK) for code: protected by access keys
+
+Access keys are generated through the AWS Console
+
+Users manage their own access keys, access keys are a secret just like a password.
+- Access Key ID = Username
+- Secret access key = Password
+
+### What's the AWS CLI:
+- A tool that enables you to interact with AWS services using commands in your command-line shell.
+- Direct access to the public APIs of AWS services i.e S3 buckets
+- Can develop scripts to manage your resources.
+- Its open-source
+- Alternative to using AWS Management Console.
+
+### What's the AWS SDK:
+- AWS Software development Kit (AWS SDK)
+- Lanuage specifiC APIs (set pf libraries)
+- Enables you to access and manage AWS services programmatically
+- Embedded within your application]
+- supports: SDKs (i.e Javascript, P[ython, PHP), mobile SDKs (i.e. Android, IOS), IoT Device SDKs (Embedded C, Arduino)
+- Example: AWS CLI is built on AWS SDK for python AWS SDK
+
+## AWS IAM roles for services:
+In AWS Identity and Access Management (IAM), roles are a way to delegate permissions to services and applications running on AWS, allowing them to perform specific tasks without the need for hard-coded credentials. 
+
+IAM roles are especially useful when services like EC2, Lambda, or ECS need to interact with other AWS services (like S3, DynamoDB, or RDS) on behalf of users.
+
+## IAM security tools:
+- IAM Credentials report (account level) - A report that lists all your accounts users and the status of their various credentials.
+- IAM Access advisor (user level) - Access advisor shows the service permissions granted to a user and when those sevices were last accessed. This informartion is use to revise policies.
+
+# Chapter 5: Amzanon Compute
+
+## EC2
+
+
+  
 
 
 
