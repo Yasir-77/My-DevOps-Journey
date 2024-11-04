@@ -145,6 +145,84 @@ IAM roles are especially useful when services like EC2, Lambda, or ECS need to i
 
 ## EC2
 
+EC2 = Elastic Compute Cloud = Infrastructure as a service.
+
+EC2 is one of the most populaar of AWS offerings, It mainly consists in the capability of:
+- Renting virtual machines (EC2)
+- Storing data on virtual drives (EBS)
+- Distributing load across machines (ELB)
+- Scaling the services using an auto-scaling group (ASG)
+
+Knowing EC2 is fundamental to understand how the cloud works.
+
+### EC2 sizing & configuartion options
+
+- Operating System (OS): Linux, Windows or Mac OS
+- How much compute power & cores (CPU)
+- How much random-access memory (RAM)
+- How much storage space: Network-attached (EBS & EFS), hardware (EC2 Instance Store)
+- Network card: speed of the card, Public IP address
+- Firewall rules: security group
+- Bootstrap script (configure at first launch): EC2 User Data
+
+### EC2 User Data
+
+- It is possible to bootstrap our instances using an EC2 User data script. Bootstrapping means launching commands when a machine starts
+- That script is only run once at the instance first start
+- EC2 user data is used to automate boot tasks such as: Installing updates, Installing software, Downloading common files from the internet
+- Any automation task you want to run on your machine when it first loads up.
+- The EC2 User Data Script runs with the root user
+
+### EC2 Instance types 
+
+Different types of EC2 Instances:
+- General Purpose
+- Compute Optimized
+- Memory Optimized
+- Storage Optimized
+- HPC Optimized
+- Accelerated Computing
+
+#### Basic Format of EC2 Instance Types
+
+The naming convention for an EC2 instance type typically follows this pattern:
+
+<Family><Generation>.<Size>
+
+For example: m5.large, t3.micro, c5.2xlarge
+
+Breakdown of the Naming Convention Components
+
+1. Instance Family (e.g., m, t, c, r, p, etc.):
+
+This indicates the primary use case or performance characteristic of the instance. Different families are optimized for specific workloads:
+
+| FAMILY CODE  | PURPOSE  | 
+|-------|------|
+| t  | General purpose |
+| m | General purpose | 
+| c | Compute Optimized   | 
+| r | Memory Optimized   |
+| i | Storage Optimized   |
+| p | Accelerated Computing   |
+
+2. Generation (e.g., 5, 6, etc.):
+
+The generation number represents updates to hardware and capabilities within each family.
+
+Each subsequent generation improves on performance, networking, and sometimes pricing (e.g., m5 is the fifth generation of m family instances).
+
+
+3. Size (e.g., large, xlarge, 2xlarge, etc.):
+
+This suffix defines the virtual CPU (vCPU) count and memory size. Size often determines the amount of compute power (CPU cores) and memory provided by the instance type.
+
+Sizes generally scale in the following progression (though some families have additional or fewer options):
+nano < micro < small < medium < large < xlarge < 2xlarge < 4xlarge < 8xlarge < 16xlarge < 32xlarge
+
+
+
+
 
   
 
