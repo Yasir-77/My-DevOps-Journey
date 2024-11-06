@@ -220,6 +220,10 @@ This suffix defines the virtual CPU (vCPU) count and memory size. Size often det
 Sizes generally scale in the following progression (though some families have additional or fewer options):
 nano < micro < small < medium < large < xlarge < 2xlarge < 4xlarge < 8xlarge < 16xlarge < 32xlarge
 
+### Running a webserver on an EC2 instance
+
+
+
 
 
 
