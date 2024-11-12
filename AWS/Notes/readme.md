@@ -141,7 +141,7 @@ IAM roles are especially useful when services like EC2, Lambda, or ECS need to i
 - IAM Credentials report (account level) - A report that lists all your accounts users and the status of their various credentials.
 - IAM Access advisor (user level) - Access advisor shows the service permissions granted to a user and when those sevices were last accessed. This informartion is use to revise policies.
 
-# Chapter 5: Amzanon Compute
+# Chapter 5: Amazon Compute
 
 ## EC2
 
@@ -264,6 +264,79 @@ After running this script:
 
 An Apache web server will be up and running on your EC2 instance.
 When you navigate to the instance’s public IP in a web browser (e.g., http://<instance-public-ip>), you’ll see the message Hello CoderCo from <instance-hostname> displayed in an HTML <h1> heading.
+
+## Security Groups
+
+### Introduction to Security Groups
+
+- Security Groups are the fundamental of network security in AWS.
+- They control how traffic is allowed into or out of our EC2 Instances.
+- Security groups only contain allow rules.
+- Security group rules can reference by IP or by security group.
+
+Security groups are acting as a 'Firewall' in EC2 instances
+
+They regualte:
+- Access to ports
+- Authorised IP ranges - IPv4 and IPv6
+- Control of inbound network (from ther to the instance)
+- Control of outbound network (from the instance to other)
+
+![image](https://github.com/user-attachments/assets/be3c7f15-ed9a-489d-9abc-abd700bea0a8)
+
+### How security groups work:
+
+![image](https://github.com/user-attachments/assets/78588792-000e-4551-b5b0-8c60897ee985)
+
+### Security groups additional information:
+
+- Can be attached to multiple instances
+- Locked down to a region / VPC combination
+- Does live "outside2 the EC2 - if traffic is blocked the EC2 instance wont see it
+- Good to maintain one seperate security group for SSH access
+- If your application ias not accessible (time out), then its a security group issue
+- If your application gives a "connection refused" error, then its an application error or its not launched
+- All inbound traffic is blocked by default
+- All outbound traffic is authorised by default
+
+### Referencing other security groups:
+
+In AWS, referencing security groups allows you to create rules that control access between instances based on security group membership rather than IP addresses. This makes it easier to manage communication between different parts of an application, especially as resources and instances scale or change.
+
+How Security Group Referencing Works
+
+When you create a rule within a security group, you can set another security group as the source or destination. By referencing security groups this way, you allow traffic between instances in those groups without specifying IP addresses.
+
+![image](https://github.com/user-attachments/assets/1a006531-97cd-45f5-a38b-582f8fc4d483)
+
+### Classic Ports to know:
+
+- 22 = SSH (Secure Shell) - log into a Linux instance
+- 21 = FTP (File Transfer Protocol) - upload files into a file share
+- 22 = SFTP (Secure File Transfer Protocol) - upload files using SSH
+- 80 = HTTP - access unsecured websites
+- 443 = HTTPS - access secured websites
+- 53 - DNS - for DNS queries and resolving
+- 3389 - RDP (Remote Desktop Protocol) - log into a Windows instance
+
+### EC2 Instances Purchasing Options 
+
+- On-Demand Instances - short workload, predictable pricing, pay by second
+- Reserved (1 & 3 years)
+- Reserved Instances - long workloads
+- Convertible Reserved Instances - long workloads with flexible instances
+- Savings Plans (1 & 3 years) -commitment to an amount of usage, long workload
+- Spot Instances - short workloads, cheap, can lose instances (less reliable)
+- Dedicated Hosts - book an entire physical server, control instance placement
+- Dedicated. Instances - no other customers will share your hardware
+- Capacity Reservations - reserve capacity in a specific AZ for any duration
+
+
+
+
+
+
+  
 
 
 
