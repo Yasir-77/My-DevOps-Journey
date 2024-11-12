@@ -222,7 +222,48 @@ nano < micro < small < medium < large < xlarge < 2xlarge < 4xlarge < 8xlarge < 1
 
 ### Running a webserver on an EC2 instance
 
+#### 1. Launch an EC2 Instance
 
+1. Go to the EC2 Dashboard in the AWS Console and click Launch Instance.
+
+2. Choose an Amazon Machine Image (AMI). For simplicity, you might use: Amazon Linux 2023 AMI 
+
+3. Choose an Instance Type: t2.micro is a good starting choice since it’s part of the Free Tier and provides enough resources for basic web server tasks.
+
+4. Configure instance details: For most setups, default settings work fine.
+
+5. Create a new key pair and save to Desktop.
+
+6. Configure Network settings: Click on the check box group with rules to allow HTTP (port 80) and HTTPS (port 443) traffic.
+
+7. Scroll down on Advanced details until User-data is found. Type the following:
+```
+#!/bin/bash
+
+yum update -y
+yum install -y httpd
+
+systemctl start httpd
+systemctl enable httpd
+
+echo "<h1>Hello CoderCo from $(hostname -f)</h1>">
+/var/www/html/index.html
+```
+If you type or run the script written in an EC2 instance’s user data it will:
+
+Update the OS Packages: yum update -y updates all installed packages to their latest versions using the yum package manager. The -y flag automatically confirms all prompts.
+
+Install Apache Web Server: yum install -y httpd installs the Apache HTTP Server (httpd package). Again, the -y flag auto-confirms the installation.
+
+Start and Enable Apache: systemctl start httpd starts the Apache service. systemctl enable httpd enables Apache to start automatically on boot, so it will continue running even after a reboot.
+
+Create a Simple HTML Page: `**echo "<h1>Hello CoderCo from $(hostname -f)</h1>" > /var/www/html/index.html**` writes a simple HTML message into the Apache default document root (/var/www/html/index.html). 
+The $(hostname -f) part is replaced with the fully qualified domain name (FQDN) of the instance, so it will dynamically show the server’s hostname in the HTML content.
+
+After running this script:
+
+An Apache web server will be up and running on your EC2 instance.
+When you navigate to the instance’s public IP in a web browser (e.g., http://<instance-public-ip>), you’ll see the message Hello CoderCo from <instance-hostname> displayed in an HTML <h1> heading.
 
 
 
